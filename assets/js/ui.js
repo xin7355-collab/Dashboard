@@ -495,6 +495,10 @@ function billingCard(snap, ctx) {
   const b = snap.billing;
   const body = b
     ? el('div', {}, [
+        b.unitsResolved === false
+          ? el('p', { class: 'card-sub', style: 'color: var(--serious)',
+              text: '新版計費 API 這次回傳了無法辨識的計量單位，以下的儲存數字可能差一個數量級，請以 GitHub 帳單頁面為準。' })
+          : null,
         row('資料來源', b.source === 'enhanced' ? '新版計費 API' : '舊版計費 API'),
         b.daysLeftInCycle != null ? row('本期剩餘', `${b.daysLeftInCycle} 天`) : null,
         b.sharedStorageGB != null ? row('共用儲存', fmt.bytes(b.sharedStorageGB * 1e9)) : null,
@@ -514,7 +518,7 @@ function billingCard(snap, ctx) {
       el('span', { class: 'spacer' }),
       b ? null : el('span', { class: 'badge neutral', text: '需要權杖' }),
     ]),
-    el('p', { class: 'card-sub', text: '只在你的瀏覽器裡抓取，永遠不會寫進 repository' }),
+    el('p', { class: 'card-sub', text: '帳單是帳號層級的私人資料，只在「即時掃描」時於你的瀏覽器抓取，不會寫進 repository' }),
     body,
   ]);
 }

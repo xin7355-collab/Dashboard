@@ -34,6 +34,8 @@ const snap = await collectSnapshot({
   login,
   token,
   includePrivate: scope === 'all',
+  // 公開快照會被 commit 進 repo，不該把帳號層級的帳單資料寫進去。
+  includeBilling: scope === 'all',
   source: 'action',
   onProgress: (msg, pct) => process.stdout.write(`\r  ${String(pct).padStart(3)}% ${msg.padEnd(50)}`),
 });

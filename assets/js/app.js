@@ -190,6 +190,8 @@ async function runLiveScan(token, includePrivate) {
       login: state.config.account,
       token,
       includePrivate,
+      // 即時模式的結果只存在這台裝置，所以帳單資料在這裡才抓。
+      includeBilling: true,
       source: 'browser',
       onProgress: (msg, pct) => {
         progressBar.style.width = `${pct}%`;

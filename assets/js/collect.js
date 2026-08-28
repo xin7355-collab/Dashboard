@@ -30,6 +30,9 @@ const KB = 1024;
 export async function collectSnapshot(opts) {
   const {
     login, token = '', includePrivate = false,
+    // 帳單是帳號層級的私人資料。公開範圍的快照會被 commit 進 repo，
+    // 所以預設不抓；只有瀏覽器端的即時掃描才會帶上，資料留在本機。
+    includeBilling = false,
     maxRepos = 300, source = 'browser', onProgress = () => {},
   } = opts;
 
@@ -56,8 +59,8 @@ export async function collectSnapshot(opts) {
   });
 
   onProgress('讀取帳單與額度…', 85);
-  const billing = token ? await fetchBilling(gh, login) : null;
-  const packages = token ? await fetchPackages(gh) : null;
+  const billing = token && includeBilling ? await fetchBilling(gh, login) : null;
+  const packages = token && includeBilling ? await fetchPackages(gh) : null;
 
   const totals = sumTotals(detailed, billing, packages);
   const reclaimable = buildReclaimable(detailed);
@@ -265,25 +268,41 @@ function normaliseEnhanced(payload) {
   const isStorage = (i) => unit(i).includes('gb') || text(i).includes('storage');
 
   const days = daysInThisMonth();
-  // 儲存以 GB-day（或 GB-hour）計價，除回天數才是「平均佔用多少 GB」。
-  const perDay = (v) => (v == null ? null : round(v / days, 3));
 
-  const storage = sumWhere((i) => isStorage(i) && !text(i).includes('lfs') && !isMinutes(i));
-  const lfs = sumWhere((i) => isStorage(i) && text(i).includes('lfs'));
+  /**
+   * 儲存的計量單位可能是 GB、GB-day 或 GB-hour，換算係數差 24 倍。
+   * 認得單位就換算成「平均佔用多少 GB」，認不得就原樣回傳並標記，
+   * 讓 UI 說「單位未知」而不是給一個差了一個數量級的數字。
+   */
+  const asAvgGB = (items) => {
+    if (!items.length) return { value: null, exact: true };
+    const total = items.reduce((n, i) => n + (i.quantity ?? 0), 0);
+    const u = unit(items[0]);
+    if (u.includes('hour')) return { value: round(total / (days * 24), 3), exact: true };
+    if (u.includes('day')) return { value: round(total / days, 3), exact: true };
+    if (u.includes('gb')) return { value: round(total, 3), exact: true };
+    return { value: round(total, 3), exact: false };
+  };
+
+  const pick = (pred) => items.filter(pred);
+  const storage = asAvgGB(pick((i) => isStorage(i) && !text(i).includes('lfs') && !isMinutes(i)));
+  const lfs = asAvgGB(pick((i) => isStorage(i) && text(i).includes('lfs')));
   const minutes = sumWhere((i) => isMinutes(i) && text(i).includes('actions'));
-  const pkgBandwidth = sumWhere((i) => text(i).includes('packages') && isStorage(i));
+  const pkgBandwidth = asAvgGB(pick((i) => text(i).includes('packages') && isStorage(i)));
 
   return {
     source: 'enhanced',
     daysLeftInCycle: null,
-    sharedStorageGB: perDay(storage),
+    sharedStorageGB: storage.value,
     paidStorageGB: null,
-    lfsStorageGB: perDay(lfs),
+    lfsStorageGB: lfs.value,
     actions: minutes == null ? null : { usedMinutes: round(minutes, 1), paidMinutes: null, includedMinutes: null, breakdown: null },
-    packages: pkgBandwidth == null ? null : { bandwidthGB: round(pkgBandwidth, 3), paidBandwidthGB: null, includedGB: null },
+    packages: pkgBandwidth.value == null ? null : { bandwidthGB: pkgBandwidth.value, paidBandwidthGB: null, includedGB: null },
     netAmount: round(items.reduce((n, i) => n + (i.netAmount ?? 0), 0), 2),
     currency: 'USD',
     itemCount: items.length,
+    // 任何一項單位換算不確定，UI 就要標示出來，不能假裝這是精確值。
+    unitsResolved: storage.exact && lfs.exact && pkgBandwidth.exact,
   };
 }
 
