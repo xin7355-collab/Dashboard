@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-28T02:25:47.178Z",
+  "generatedAt": "2026-08-28T02:27:31.679Z",
   "scope": "public",
   "source": "action",
   "account": {
@@ -19,15 +19,15 @@
   },
   "totals": {
     "repoBytes": 1424921600,
-    "artifactBytes": 4957679724,
+    "artifactBytes": 4959857715,
     "cacheBytes": 1660319113,
     "releaseBytes": 5718367,
     "lfsBytes": null,
     "expiredArtifactBytes": 2420403673,
     "privateArtifactBytes": 0,
     "privateCacheBytes": 0,
-    "packagesCount": 0,
-    "allBytes": 6388319691
+    "packagesCount": null,
+    "allBytes": 6390497682
   },
   "counts": {
     "repos": 14,
@@ -36,9 +36,9 @@
     "private": 0,
     "forks": 0,
     "archived": 0,
-    "artifacts": 613,
+    "artifacts": 615,
     "releases": 4,
-    "packages": 0
+    "packages": null
   },
   "repos": [
     {
@@ -164,16 +164,16 @@
       "fork": false,
       "archived": false,
       "sizeBytes": 1091584,
-      "artifactBytes": 3256761,
+      "artifactBytes": 5434752,
       "expiredArtifactBytes": 0,
-      "artifactCount": 3,
+      "artifactCount": 5,
       "cacheBytes": 0,
       "cacheCount": 0,
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
-      "pushedAt": "2026-08-28T02:25:31Z",
-      "updatedAt": "2026-08-28T02:25:35Z",
+      "pushedAt": "2026-08-28T02:27:16Z",
+      "updatedAt": "2026-08-28T02:26:18Z",
       "language": "JavaScript",
       "stars": 0,
       "openIssues": 1,
@@ -2766,65 +2766,12 @@
       "severity": "critical"
     }
   ],
-  "billing": {
-    "source": "enhanced",
-    "daysLeftInCycle": null,
-    "sharedStorageGB": 122.41,
-    "paidStorageGB": null,
-    "lfsStorageGB": null,
-    "actions": {
-      "usedMinutes": 48539,
-      "paidMinutes": null,
-      "includedMinutes": null,
-      "breakdown": null
-    },
-    "packages": null,
-    "netAmount": 0,
-    "currency": "USD",
-    "itemCount": 230
-  },
+  "billing": null,
   "rate": {
     "limit": 5000,
-    "remaining": 4913,
-    "reset": 1787885527000
+    "remaining": 4851,
+    "reset": 1787884398000
   },
-  "requestCount": 54,
-  "errors": [
-    {
-      "path": "/user/packages?package_type=container",
-      "message": "HTTP 403: Resource not accessible by personal access token",
-      "status": 403,
-      "at": "2026-08-28T02:25:46.848Z"
-    },
-    {
-      "path": "/user/packages?package_type=npm",
-      "message": "HTTP 403: Resource not accessible by personal access token",
-      "status": 403,
-      "at": "2026-08-28T02:25:46.915Z"
-    },
-    {
-      "path": "/user/packages?package_type=maven",
-      "message": "HTTP 403: Resource not accessible by personal access token",
-      "status": 403,
-      "at": "2026-08-28T02:25:46.986Z"
-    },
-    {
-      "path": "/user/packages?package_type=rubygems",
-      "message": "HTTP 403: Resource not accessible by personal access token",
-      "status": 403,
-      "at": "2026-08-28T02:25:47.054Z"
-    },
-    {
-      "path": "/user/packages?package_type=nuget",
-      "message": "HTTP 403: Resource not accessible by personal access token",
-      "status": 403,
-      "at": "2026-08-28T02:25:47.113Z"
-    },
-    {
-      "path": "/user/packages?package_type=docker",
-      "message": "HTTP 403: Resource not accessible by personal access token",
-      "status": 403,
-      "at": "2026-08-28T02:25:47.176Z"
-    }
-  ]
+  "requestCount": 47,
+  "errors": []
 }
