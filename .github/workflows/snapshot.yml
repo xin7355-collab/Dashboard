@@ -1,0 +1,99 @@
+name: 每日儲存空間快照
+
+on:
+  schedule:
+    # 每天 UTC 19:30（台北時間隔天 03:30）跑一次。
+    # 刻意避開整點：GitHub 的排程在整點會嚴重塞車，常常延遲數十分鐘。
+    - cron: '30 19 * * *'
+  workflow_dispatch:
+    inputs:
+      scope:
+        description: '採集範圍（public 會 commit 進 repo；all 只建議在私有 repo 使用）'
+        type: choice
+        options: [public, all]
+        default: public
+
+permissions:
+  contents: write   # 需要把快照 commit 回 repo
+  issues: write     # 額度超標時開 Issue 通知
+
+concurrency:
+  group: storage-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 採集快照
+        id: collect
+        env:
+          # 預設用 workflow 內建 token（只看得到本 repo 的 Actions 資料）。
+          # 想涵蓋你所有 repo，就到 Settings → Secrets 建一個 DASHBOARD_TOKEN。
+          DASHBOARD_TOKEN: ${{ secrets.DASHBOARD_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/snapshot.mjs --scope "${{ inputs.scope || 'public' }}"
+
+      - name: 提交快照
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/
+          # 沒有變動就不要製造空 commit，否則歷史會被雜訊淹沒。
+          if git diff --staged --quiet; then
+            echo '沒有變動，略過 commit'
+            exit 0
+          fi
+          git commit -m "chore(data): $(date -u +%Y-%m-%d) 儲存空間快照"
+          for i in 1 2 3 4; do
+            git push && break
+            echo "push 失敗，第 $i 次重試…"
+            sleep $((2 ** i))
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+          done
+
+      - name: 額度超標時開 Issue
+        if: steps.collect.outputs.breached == 'true'
+        uses: actions/github-script@v7
+        env:
+          SUMMARY: ${{ steps.collect.outputs.summary }}
+          RECLAIMABLE: ${{ steps.collect.outputs.reclaimable }}
+        with:
+          script: |
+            const title = '⚠️ GitHub 儲存空間額度超標';
+            const body = [
+              '偵測到有額度超過設定的警戒門檻：',
+              '',
+              process.env.SUMMARY,
+              '',
+              `可安全回收的空間：**${process.env.RECLAIMABLE}**（過期 artifacts 與 Actions cache）。`,
+              '',
+              '詳細明細請看儀表板。門檻可以在 `config.json` 的 `alerts` 區塊調整。',
+              '',
+              '---',
+              '_由「每日儲存空間快照」workflow 自動產生_',
+            ].join('\n');
+
+            // 同一件事只開一張票：已經有開著的就更新留言，不要每天洗版。
+            const { data: existing } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'storage-alert',
+            });
+
+            if (existing.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing[0].number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ['storage-alert'],
+              });
+            }

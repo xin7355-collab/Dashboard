@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GitHub 儲存空間儀表板</title>
+<meta name="description" content="監控 GitHub 帳號的儲存用量、額度與可回收空間，含成長趨勢與用滿預估。">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>📦</text></svg>">
+<link rel="stylesheet" href="./assets/css/app.css">
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z" stroke-linejoin="round"/>
+      <path d="M3 7.5 12 12m0 0 9-4.5M12 12v9" stroke-linejoin="round"/>
+    </svg>
+    <span>儲存空間儀表板</span>
+    <span class="sub" id="stamp">載入中…</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <span class="badge neutral" id="mode-badge">每日快照</span>
+
+  <a class="account-chip" id="account-chip" href="https://github.com" target="_blank" rel="noopener">
+    <span>—</span>
+  </a>
+
+  <button class="btn" id="reset-live" type="button" hidden title="清除即時資料，回到每日快照">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+      <path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2m2 0v13a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="btn-text">清除即時資料</span>
+  </button>
+
+  <button class="btn primary" id="live-scan" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M21 12a9 9 0 1 1-2.6-6.4M21 3v6h-6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="btn-text">即時掃描</span>
+  </button>
+
+  <button class="btn icon" id="theme-toggle" type="button" aria-label="切換主題">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4" stroke-linecap="round"/>
+    </svg>
+  </button>
+</header>
+
+<!-- 篩選列：一列、置於所有內容之上，範圍一改，底下每張圖都跟著重算。 -->
+<div class="filters">
+  <span class="label">時間範圍</span>
+  <div class="segmented" id="range-filter" role="group" aria-label="時間範圍">
+    <button type="button" data-range="7"  aria-pressed="false">7 天</button>
+    <button type="button" data-range="30" aria-pressed="true">30 天</button>
+    <button type="button" data-range="90" aria-pressed="false">90 天</button>
+    <button type="button" data-range="all" aria-pressed="false">全部</button>
+  </div>
+</div>
+
+<main id="dashboard" aria-live="polite" aria-busy="false">
+  <div class="empty" style="margin: 40px auto; max-width: 420px">載入資料中…</div>
+</main>
+
+<footer>
+  <h3>這些數字是怎麼來的、又有哪些限制</h3>
+  <ul>
+    <li><strong>Git 內容</strong>來自 GitHub API 的 <code>repository.size</code>。這是 GitHub 定期估算的磁碟用量，不是即時值，剛 push 完可能要一段時間才反映。</li>
+    <li><strong>Actions artifacts</strong> 與 <strong>Packages</strong> 共用同一份儲存額度，這通常才是空間爆掉的主因，而不是程式碼本身。</li>
+    <li><strong>Actions cache</strong> 每個 repository 各有獨立額度、滿了會自動淘汰最舊的，因此不計入「總佔用」，但仍單獨列出。</li>
+    <li><strong>Release 附件</strong>不計入儲存額度，但會消耗下載頻寬。</li>
+    <li><strong>Git LFS</strong> 的 REST API 沒有逐 repository 的用量端點，只能從帳單取得總量；儀表板改以 <code>.gitattributes</code> 標示哪些 repository 有在用。</li>
+    <li><strong>額度上限</strong>寫在 <code>config.json</code>，是各方案的參考值。GitHub 的計費政策會變動，請對照你帳號 Settings → Billing 的實際數字調整。</li>
+    <li><strong>用滿預估</strong>是對最近 30 天做最小平方線性外推。R² 低於 0.5 時會標示為不可靠——成長多半是階段性的，別把它當承諾。</li>
+  </ul>
+  <p>公開快照由 GitHub Actions 每日產生並存進本 repository。私人 repository 與帳單資料只在你按下「即時掃描」時於瀏覽器端抓取，權杖與結果都只存在這台裝置。</p>
+</footer>
+
+<!-- 存取權杖對話框 -->
+<dialog class="sheet" id="token-dialog">
+  <form method="dialog" id="token-form">
+    <div class="sheet-head">
+      <h2>用你自己的權杖做即時掃描</h2>
+    </div>
+    <div class="sheet-body">
+      <p>快照模式只看得到公開資料。貼上個人存取權杖後，儀表板會直接從你的瀏覽器打 GitHub API，補上私人 repository、Git LFS 與帳單用量。</p>
+      <p style="margin-top:10px"><strong>權杖不會離開這台裝置</strong>——不會送到任何伺服器，也不會寫進這個 repository。</p>
+
+      <p style="margin-top:14px"><strong>建立 fine-grained 權杖時需要的權限：</strong></p>
+      <ol>
+        <li>到 <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Settings → Developer settings → Fine-grained tokens</a></li>
+        <li>Repository access 選 <code>All repositories</code></li>
+        <li>Repository permissions：<code>Metadata: Read</code>、<code>Actions: Read</code>、<code>Contents: Read</code></li>
+        <li>Account permissions：<code>Plan: Read</code>（帳單用量需要）</li>
+      </ol>
+
+      <label style="display:block; margin-top:14px">
+        <span class="label" style="display:block; margin-bottom:6px; font-size:12px; color:var(--text-muted)">存取權杖</span>
+        <input type="password" name="token" placeholder="github_pat_… 或 ghp_…" autocomplete="off" spellcheck="false">
+      </label>
+
+      <label style="display:flex; align-items:center; gap:8px; margin-top:12px">
+        <input type="checkbox" name="private" checked>
+        <span>納入私人 repository</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; margin-top:8px">
+        <input type="checkbox" name="remember" checked>
+        <span>記住權杖（存在這個瀏覽器的 localStorage）</span>
+      </label>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn" type="button" value="cancel"
+              onclick="this.closest('dialog').close()">取消</button>
+      <button class="btn primary" type="submit">開始掃描</button>
+    </div>
+  </form>
+</dialog>
+
+<script type="module" src="./assets/js/app.js"></script>
+</body>
+</html>
