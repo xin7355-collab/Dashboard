@@ -83,13 +83,21 @@ export class GitHubClient {
     }
   }
 
-  /** 取單一資源。失敗時回傳 fallback 並記錄原因。 */
-  async get(path, fallback = null) {
+  /**
+   * 取單一資源。失敗時回傳 fallback 並記錄原因。
+   *
+   * quietStatuses 列出「這個狀態碼是預期內的，不算故障」的情況，例如查空
+   * repository 的檔案樹必然回 409。把預期內的狀況記成錯誤，會讓真正的問題
+   * 被雜訊淹沒，也會誤觸儀表板的「資料不完整」警告。
+   */
+  async get(path, fallback = null, { quietStatuses = [] } = {}) {
     try {
       const { body } = await this.#fetch(path);
       return body;
     } catch (err) {
-      this.noteError(path, err.message, err.status ?? null);
+      if (!quietStatuses.includes(err.status)) {
+        this.noteError(path, err.message, err.status ?? null);
+      }
       return fallback;
     }
   }

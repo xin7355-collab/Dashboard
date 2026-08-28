@@ -325,8 +325,11 @@ async function detectLfs(gh, full) {
  * repo 的磁碟體積對照，自行判斷是不是歷史殘留。
  */
 async function scanTree(gh, full, branch) {
-  const tree = await gh.get(`/repos/${full}/git/trees/${branch}?recursive=1`);
-  if (!tree?.tree) return { treeBytes: null, treeTruncated: false, treeFileCount: null, largestFiles: [] };
+  const empty = { treeBytes: null, treeTruncated: false, treeFileCount: null, largestFiles: [] };
+  // 空 repo（一個 commit 都沒有）的 tree 端點會回 409，分支名不符則是 404。
+  // 兩種都不是故障，靜靜跳過即可，否則會誤觸「資料不完整」警告。
+  const tree = await gh.get(`/repos/${full}/git/trees/${branch}?recursive=1`, null, { quietStatuses: [404, 409] });
+  if (!tree?.tree) return empty;
 
   const blobs = tree.tree.filter((n) => n.type === 'blob' && typeof n.size === 'number');
   const largest = [...blobs].sort((a, b) => b.size - a.size).slice(0, 10);
