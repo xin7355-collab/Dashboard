@@ -1,8 +1,9 @@
 name: 部署 GitHub Pages
 
 on:
+  # 不寫死分支名：改用下面 job 層級的判斷，比對 repo 當下的預設分支。
+  # 寫死 main 的話，預設分支叫別的名字時這個 workflow 永遠不會觸發。
   push:
-    branches: [main]
   # 每日快照 commit 完之後自動重新部署。
   workflow_run:
     workflows: ['每日儲存空間快照']
@@ -20,6 +21,10 @@ concurrency:
 
 jobs:
   deploy:
+    # 只從預設分支部署；其他分支的 push 直接跳過。
+    if: >-
+      github.event_name != 'push' ||
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
