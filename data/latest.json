@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-28T03:56:16.313Z",
+  "generatedAt": "2026-08-28T04:58:07.419Z",
   "scope": "public",
   "source": "action",
   "account": {
@@ -18,16 +18,16 @@
     }
   },
   "totals": {
-    "repoBytes": 1425252352,
-    "artifactBytes": 4963131717,
+    "repoBytes": 1425303552,
+    "artifactBytes": 4965841148,
     "cacheBytes": 1660319113,
-    "releaseBytes": 5718367,
+    "releaseBytes": 3752015,
     "lfsBytes": null,
-    "expiredArtifactBytes": 2542126637,
+    "expiredArtifactBytes": 2525471805,
     "privateArtifactBytes": 0,
     "privateCacheBytes": 0,
     "packagesCount": null,
-    "allBytes": 6394102436
+    "allBytes": 6394896715
   },
   "counts": {
     "repos": 14,
@@ -36,7 +36,7 @@
     "private": 0,
     "forks": 0,
     "archived": 0,
-    "artifacts": 618,
+    "artifacts": 622,
     "releases": 4,
     "packages": null
   },
@@ -44,21 +44,81 @@
     {
       "name": "tool",
       "fullName": "xin7355-collab/tool",
+      "retention": {
+        "days": 7,
+        "count": 141,
+        "distinct": 2
+      },
       "url": "https://github.com/xin7355-collab/tool",
       "private": false,
       "fork": false,
       "archived": false,
       "sizeBytes": 1254303744,
-      "artifactBytes": 507789289,
-      "expiredArtifactBytes": 473040246,
-      "artifactCount": 169,
+      "artifactBytes": 508289399,
+      "expiredArtifactBytes": 456385414,
+      "artifactCount": 171,
       "cacheBytes": 0,
       "cacheCount": 0,
-      "releaseBytes": 1966352,
+      "releaseBytes": 0,
       "releaseCount": 1,
       "usesLfs": false,
-      "pushedAt": "2026-08-28T00:37:26Z",
-      "updatedAt": "2026-08-27T23:00:38Z",
+      "treeBytes": 544197,
+      "treeTruncated": false,
+      "treeFileCount": 54,
+      "largestFiles": [
+        {
+          "path": "index.html",
+          "bytes": 137394,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/index.html"
+        },
+        {
+          "path": ".watch-state.json",
+          "bytes": 76653,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/.watch-state.json"
+        },
+        {
+          "path": "scripts/grab_transcripts.py",
+          "bytes": 41549,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/scripts/grab_transcripts.py"
+        },
+        {
+          "path": "scripts/yt2deck.py",
+          "bytes": 39069,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/scripts/yt2deck.py"
+        },
+        {
+          "path": "scripts/read_docs.py",
+          "bytes": 27133,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/scripts/read_docs.py"
+        },
+        {
+          "path": "assets/icon-512.png",
+          "bytes": 16762,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/assets/icon-512.png"
+        },
+        {
+          "path": "assets/icon-maskable-512.png",
+          "bytes": 15132,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/assets/icon-maskable-512.png"
+        },
+        {
+          "path": "scripts/inbox.py",
+          "bytes": 14585,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/scripts/inbox.py"
+        },
+        {
+          "path": "scripts/gdrive_sync.py",
+          "bytes": 11569,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/scripts/gdrive_sync.py"
+        },
+        {
+          "path": "scripts/watch_channels.py",
+          "bytes": 11472,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/scripts/watch_channels.py"
+        }
+      ],
+      "pushedAt": "2026-08-28T04:52:25Z",
+      "updatedAt": "2026-08-28T04:52:49Z",
       "language": "Python",
       "stars": 1,
       "openIssues": 0,
@@ -67,6 +127,11 @@
     {
       "name": "StockAI-DB",
       "fullName": "xin7355-collab/StockAI-DB",
+      "retention": {
+        "days": 1,
+        "count": 158,
+        "distinct": 3
+      },
       "url": "https://github.com/xin7355-collab/StockAI-DB",
       "private": false,
       "fork": false,
@@ -80,6 +145,61 @@
       "releaseBytes": 3737279,
       "releaseCount": 2,
       "usesLfs": false,
+      "treeBytes": 8158590,
+      "treeTruncated": false,
+      "treeFileCount": 284,
+      "largestFiles": [
+        {
+          "path": "index.html",
+          "bytes": 3838460,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/index.html"
+        },
+        {
+          "path": "CLAUDE.md",
+          "bytes": 397277,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/CLAUDE.md"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "bytes": 391241,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/CHANGELOG.md"
+        },
+        {
+          "path": "miner.py",
+          "bytes": 386009,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/miner.py"
+        },
+        {
+          "path": "macro_miner.py",
+          "bytes": 179244,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/macro_miner.py"
+        },
+        {
+          "path": "cloud-worker/worker.js",
+          "bytes": 114686,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/cloud-worker/worker.js"
+        },
+        {
+          "path": "radar_miner.py",
+          "bytes": 104614,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/radar_miner.py"
+        },
+        {
+          "path": "api.py",
+          "bytes": 71946,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/api.py"
+        },
+        {
+          "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+          "bytes": 67061,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+        },
+        {
+          "path": "backtest.py",
+          "bytes": 65184,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/backtest.py"
+        }
+      ],
       "pushedAt": "2026-08-28T02:22:15Z",
       "updatedAt": "2026-08-28T01:01:47Z",
       "language": "HTML",
@@ -90,6 +210,11 @@
     {
       "name": "PriceHub",
       "fullName": "xin7355-collab/PriceHub",
+      "retention": {
+        "days": 1,
+        "count": 30,
+        "distinct": 1
+      },
       "url": "https://github.com/xin7355-collab/PriceHub",
       "private": false,
       "fork": false,
@@ -103,6 +228,61 @@
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
+      "treeBytes": 191529,
+      "treeTruncated": false,
+      "treeFileCount": 36,
+      "largestFiles": [
+        {
+          "path": "web/index.html",
+          "bytes": 22907,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/web/index.html"
+        },
+        {
+          "path": "collector/normalize.py",
+          "bytes": 13344,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/collector/normalize.py"
+        },
+        {
+          "path": "tools/probe_platforms.py",
+          "bytes": 11900,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/tools/probe_platforms.py"
+        },
+        {
+          "path": "README.md",
+          "bytes": 11332,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/README.md"
+        },
+        {
+          "path": "edge/test_worker.mjs",
+          "bytes": 10822,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/edge/test_worker.mjs"
+        },
+        {
+          "path": "tests/test_storage.py",
+          "bytes": 10235,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/tests/test_storage.py"
+        },
+        {
+          "path": ".github/workflows/collect.yml",
+          "bytes": 9898,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/.github/workflows/collect.yml"
+        },
+        {
+          "path": "tests/test_normalize.py",
+          "bytes": 8590,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/tests/test_normalize.py"
+        },
+        {
+          "path": "collector/run.py",
+          "bytes": 8027,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/collector/run.py"
+        },
+        {
+          "path": "tests/test_browser.py",
+          "bytes": 7683,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/tests/test_browser.py"
+        }
+      ],
       "pushedAt": "2026-08-27T22:26:13Z",
       "updatedAt": "2026-08-11T23:22:42Z",
       "language": "Python",
@@ -113,6 +293,11 @@
     {
       "name": "prompt",
       "fullName": "xin7355-collab/prompt",
+      "retention": {
+        "days": 30,
+        "count": 31,
+        "distinct": 2
+      },
       "url": "https://github.com/xin7355-collab/prompt",
       "private": false,
       "fork": false,
@@ -126,6 +311,61 @@
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
+      "treeBytes": 1749768,
+      "treeTruncated": false,
+      "treeFileCount": 94,
+      "largestFiles": [
+        {
+          "path": "public/poster.html",
+          "bytes": 359393,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/public/poster.html"
+        },
+        {
+          "path": "package-lock.json",
+          "bytes": 299859,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/package-lock.json"
+        },
+        {
+          "path": "assets/data/corpus.json",
+          "bytes": 224342,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/assets/data/corpus.json"
+        },
+        {
+          "path": "src/data/posters.ts",
+          "bytes": 119532,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/src/data/posters.ts"
+        },
+        {
+          "path": "src/data/styles.ts",
+          "bytes": 69236,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/src/data/styles.ts"
+        },
+        {
+          "path": "src/data/addendum.ts",
+          "bytes": 58023,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/src/data/addendum.ts"
+        },
+        {
+          "path": "tools/poster-page-app.js",
+          "bytes": 48412,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/tools/poster-page-app.js"
+        },
+        {
+          "path": "assets/icon.png",
+          "bytes": 44792,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/assets/icon.png"
+        },
+        {
+          "path": "assets/adaptive-icon.png",
+          "bytes": 40463,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/assets/adaptive-icon.png"
+        },
+        {
+          "path": "src/data/forge.ts",
+          "bytes": 29238,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/src/data/forge.ts"
+        }
+      ],
       "pushedAt": "2026-08-26T00:16:26Z",
       "updatedAt": "2026-08-26T00:16:35Z",
       "language": "TypeScript",
@@ -136,6 +376,11 @@
     {
       "name": "GALEPOST",
       "fullName": "xin7355-collab/GALEPOST",
+      "retention": {
+        "days": 1,
+        "count": 30,
+        "distinct": 1
+      },
       "url": "https://github.com/xin7355-collab/GALEPOST",
       "private": false,
       "fork": false,
@@ -149,6 +394,61 @@
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
+      "treeBytes": 937512,
+      "treeTruncated": false,
+      "treeFileCount": 19,
+      "largestFiles": [
+        {
+          "path": "index.html",
+          "bytes": 407593,
+          "url": "https://github.com/xin7355-collab/GALEPOST/blob/claude/feng-shao-lgn3wn/index.html"
+        },
+        {
+          "path": "assets/icon-512.png",
+          "bytes": 203068,
+          "url": "https://github.com/xin7355-collab/GALEPOST/blob/claude/feng-shao-lgn3wn/assets/icon-512.png"
+        },
+        {
+          "path": "vendor/leaflet/leaflet.js",
+          "bytes": 147552,
+          "url": "https://github.com/xin7355-collab/GALEPOST/blob/claude/feng-shao-lgn3wn/vendor/leaflet/leaflet.js"
+        },
+        {
+          "path": "TODO.md",
+          "bytes": 85412,
+          "url": "https://github.com/xin7355-collab/GALEPOST/blob/claude/feng-shao-lgn3wn/TODO.md"
+        },
+        {
+          "path": "assets/icon-192.png",
+          "bytes": 38673,
+          "url": "https://github.com/xin7355-collab/GALEPOST/blob/claude/feng-shao-lgn3wn/assets/icon-192.png"
+        },
+        {
+          "path": "README.md",
+          "bytes": 15693,
+          "url": "https://github.com/xin7355-collab/GALEPOST/blob/claude/feng-shao-lgn3wn/README.md"
+        },
+        {
+          "path": "vendor/leaflet/leaflet.css",
+          "bytes": 14806,
+          "url": "https://github.com/xin7355-collab/GALEPOST/blob/claude/feng-shao-lgn3wn/vendor/leaflet/leaflet.css"
+        },
+        {
+          "path": "assets/galepost-icon.svg",
+          "bytes": 10374,
+          "url": "https://github.com/xin7355-collab/GALEPOST/blob/claude/feng-shao-lgn3wn/assets/galepost-icon.svg"
+        },
+        {
+          "path": "sw.js",
+          "bytes": 4103,
+          "url": "https://github.com/xin7355-collab/GALEPOST/blob/claude/feng-shao-lgn3wn/sw.js"
+        },
+        {
+          "path": "vendor/leaflet/images/marker-icon-2x.png",
+          "bytes": 2464,
+          "url": "https://github.com/xin7355-collab/GALEPOST/blob/claude/feng-shao-lgn3wn/vendor/leaflet/images/marker-icon-2x.png"
+        }
+      ],
       "pushedAt": "2026-08-27T05:16:34Z",
       "updatedAt": "2026-08-27T05:18:52Z",
       "language": "HTML",
@@ -159,21 +459,81 @@
     {
       "name": "Dashboard",
       "fullName": "xin7355-collab/Dashboard",
+      "retention": {
+        "days": 1,
+        "count": 10,
+        "distinct": 1
+      },
       "url": "https://github.com/xin7355-collab/Dashboard",
       "private": false,
       "fork": false,
       "archived": false,
-      "sizeBytes": 1126400,
-      "artifactBytes": 8708754,
+      "sizeBytes": 1177600,
+      "artifactBytes": 10918075,
       "expiredArtifactBytes": 0,
-      "artifactCount": 8,
+      "artifactCount": 10,
       "cacheBytes": 0,
       "cacheCount": 0,
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
-      "pushedAt": "2026-08-28T03:56:00Z",
-      "updatedAt": "2026-08-28T02:30:38Z",
+      "treeBytes": 1436125,
+      "treeTruncated": false,
+      "treeFileCount": 25,
+      "largestFiles": [
+        {
+          "path": "docs/preview-light.png",
+          "bytes": 541255,
+          "url": "https://github.com/xin7355-collab/Dashboard/blob/main/docs/preview-light.png"
+        },
+        {
+          "path": "docs/preview-dark.png",
+          "bytes": 538358,
+          "url": "https://github.com/xin7355-collab/Dashboard/blob/main/docs/preview-dark.png"
+        },
+        {
+          "path": "data/latest.json",
+          "bytes": 93999,
+          "url": "https://github.com/xin7355-collab/Dashboard/blob/main/data/latest.json"
+        },
+        {
+          "path": "assets/js/ui.js",
+          "bytes": 49853,
+          "url": "https://github.com/xin7355-collab/Dashboard/blob/main/assets/js/ui.js"
+        },
+        {
+          "path": "data/demo.json",
+          "bytes": 42886,
+          "url": "https://github.com/xin7355-collab/Dashboard/blob/main/data/demo.json"
+        },
+        {
+          "path": "assets/js/charts.js",
+          "bytes": 26581,
+          "url": "https://github.com/xin7355-collab/Dashboard/blob/main/assets/js/charts.js"
+        },
+        {
+          "path": "assets/css/app.css",
+          "bytes": 22622,
+          "url": "https://github.com/xin7355-collab/Dashboard/blob/main/assets/css/app.css"
+        },
+        {
+          "path": "assets/js/collect.js",
+          "bytes": 21865,
+          "url": "https://github.com/xin7355-collab/Dashboard/blob/main/assets/js/collect.js"
+        },
+        {
+          "path": "data/demo-history.json",
+          "bytes": 16160,
+          "url": "https://github.com/xin7355-collab/Dashboard/blob/main/data/demo-history.json"
+        },
+        {
+          "path": "assets/js/app.js",
+          "bytes": 11932,
+          "url": "https://github.com/xin7355-collab/Dashboard/blob/main/assets/js/app.js"
+        }
+      ],
+      "pushedAt": "2026-08-28T04:57:48Z",
+      "updatedAt": "2026-08-28T03:56:42Z",
       "language": "JavaScript",
       "stars": 0,
       "openIssues": 1,
@@ -182,6 +542,7 @@
     {
       "name": "www",
       "fullName": "xin7355-collab/www",
+      "retention": null,
       "url": "https://github.com/xin7355-collab/www",
       "private": false,
       "fork": false,
@@ -195,6 +556,61 @@
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
+      "treeBytes": 989348,
+      "treeTruncated": false,
+      "treeFileCount": 73,
+      "largestFiles": [
+        {
+          "path": "package-lock.json",
+          "bytes": 282196,
+          "url": "https://github.com/xin7355-collab/www/blob/main/package-lock.json"
+        },
+        {
+          "path": "src/lib/s2tData.ts",
+          "bytes": 264949,
+          "url": "https://github.com/xin7355-collab/www/blob/main/src/lib/s2tData.ts"
+        },
+        {
+          "path": "src/components/SettingsModal.tsx",
+          "bytes": 27422,
+          "url": "https://github.com/xin7355-collab/www/blob/main/src/components/SettingsModal.tsx"
+        },
+        {
+          "path": "apps-script-code.gs",
+          "bytes": 27213,
+          "url": "https://github.com/xin7355-collab/www/blob/main/apps-script-code.gs"
+        },
+        {
+          "path": "public/icon-512.png",
+          "bytes": 26559,
+          "url": "https://github.com/xin7355-collab/www/blob/main/public/icon-512.png"
+        },
+        {
+          "path": "CLAUDE.md",
+          "bytes": 26227,
+          "url": "https://github.com/xin7355-collab/www/blob/main/CLAUDE.md"
+        },
+        {
+          "path": "src/app/page.tsx",
+          "bytes": 22078,
+          "url": "https://github.com/xin7355-collab/www/blob/main/src/app/page.tsx"
+        },
+        {
+          "path": "README.md",
+          "bytes": 21114,
+          "url": "https://github.com/xin7355-collab/www/blob/main/README.md"
+        },
+        {
+          "path": "src/lib/t2s.ts",
+          "bytes": 20653,
+          "url": "https://github.com/xin7355-collab/www/blob/main/src/lib/t2s.ts"
+        },
+        {
+          "path": "src/lib/api.ts",
+          "bytes": 16918,
+          "url": "https://github.com/xin7355-collab/www/blob/main/src/lib/api.ts"
+        }
+      ],
       "pushedAt": "2026-08-27T11:28:22Z",
       "updatedAt": "2026-08-27T11:33:44Z",
       "language": "TypeScript",
@@ -205,6 +621,11 @@
     {
       "name": "Antenna-Tower",
       "fullName": "xin7355-collab/Antenna-Tower",
+      "retention": {
+        "days": 1,
+        "count": 8,
+        "distinct": 2
+      },
       "url": "https://github.com/xin7355-collab/Antenna-Tower",
       "private": false,
       "fork": false,
@@ -218,6 +639,61 @@
       "releaseBytes": 14736,
       "releaseCount": 1,
       "usesLfs": false,
+      "treeBytes": 704551,
+      "treeTruncated": false,
+      "treeFileCount": 46,
+      "largestFiles": [
+        {
+          "path": "vendor/leaflet/leaflet.js",
+          "bytes": 147552,
+          "url": "https://github.com/xin7355-collab/Antenna-Tower/blob/main/vendor/leaflet/leaflet.js"
+        },
+        {
+          "path": "docs/concept.png",
+          "bytes": 141076,
+          "url": "https://github.com/xin7355-collab/Antenna-Tower/blob/main/docs/concept.png"
+        },
+        {
+          "path": "icons/icon-512.png",
+          "bytes": 107204,
+          "url": "https://github.com/xin7355-collab/Antenna-Tower/blob/main/icons/icon-512.png"
+        },
+        {
+          "path": "js/app.js",
+          "bytes": 51752,
+          "url": "https://github.com/xin7355-collab/Antenna-Tower/blob/main/js/app.js"
+        },
+        {
+          "path": "js/ar.js",
+          "bytes": 38801,
+          "url": "https://github.com/xin7355-collab/Antenna-Tower/blob/main/js/ar.js"
+        },
+        {
+          "path": "css/style.css",
+          "bytes": 20842,
+          "url": "https://github.com/xin7355-collab/Antenna-Tower/blob/main/css/style.css"
+        },
+        {
+          "path": "icons/icon-192.png",
+          "bytes": 19041,
+          "url": "https://github.com/xin7355-collab/Antenna-Tower/blob/main/icons/icon-192.png"
+        },
+        {
+          "path": "js/sky.js",
+          "bytes": 19028,
+          "url": "https://github.com/xin7355-collab/Antenna-Tower/blob/main/js/sky.js"
+        },
+        {
+          "path": "js/elevation.js",
+          "bytes": 18718,
+          "url": "https://github.com/xin7355-collab/Antenna-Tower/blob/main/js/elevation.js"
+        },
+        {
+          "path": "test/geo.test.js",
+          "bytes": 18628,
+          "url": "https://github.com/xin7355-collab/Antenna-Tower/blob/main/test/geo.test.js"
+        }
+      ],
       "pushedAt": "2026-08-23T07:03:21Z",
       "updatedAt": "2026-08-23T07:03:49Z",
       "language": "JavaScript",
@@ -228,6 +704,7 @@
     {
       "name": "Tower-Sight",
       "fullName": "xin7355-collab/Tower-Sight",
+      "retention": null,
       "url": "https://github.com/xin7355-collab/Tower-Sight",
       "private": false,
       "fork": false,
@@ -241,6 +718,61 @@
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
+      "treeBytes": 608497,
+      "treeTruncated": false,
+      "treeFileCount": 42,
+      "largestFiles": [
+        {
+          "path": "vendor/leaflet/leaflet.js",
+          "bytes": 147552,
+          "url": "https://github.com/xin7355-collab/Tower-Sight/blob/claude/copy-account-setup-check-36mcpq/vendor/leaflet/leaflet.js"
+        },
+        {
+          "path": "docs/concept.png",
+          "bytes": 141076,
+          "url": "https://github.com/xin7355-collab/Tower-Sight/blob/claude/copy-account-setup-check-36mcpq/docs/concept.png"
+        },
+        {
+          "path": "icons/icon-512.png",
+          "bytes": 107204,
+          "url": "https://github.com/xin7355-collab/Tower-Sight/blob/claude/copy-account-setup-check-36mcpq/icons/icon-512.png"
+        },
+        {
+          "path": "js/app.js",
+          "bytes": 35523,
+          "url": "https://github.com/xin7355-collab/Tower-Sight/blob/claude/copy-account-setup-check-36mcpq/js/app.js"
+        },
+        {
+          "path": "js/ar.js",
+          "bytes": 20001,
+          "url": "https://github.com/xin7355-collab/Tower-Sight/blob/claude/copy-account-setup-check-36mcpq/js/ar.js"
+        },
+        {
+          "path": "icons/icon-192.png",
+          "bytes": 19041,
+          "url": "https://github.com/xin7355-collab/Tower-Sight/blob/claude/copy-account-setup-check-36mcpq/icons/icon-192.png"
+        },
+        {
+          "path": "icons/apple-touch-icon.png",
+          "bytes": 17274,
+          "url": "https://github.com/xin7355-collab/Tower-Sight/blob/claude/copy-account-setup-check-36mcpq/icons/apple-touch-icon.png"
+        },
+        {
+          "path": "vendor/leaflet/leaflet.css",
+          "bytes": 14806,
+          "url": "https://github.com/xin7355-collab/Tower-Sight/blob/claude/copy-account-setup-check-36mcpq/vendor/leaflet/leaflet.css"
+        },
+        {
+          "path": "css/style.css",
+          "bytes": 12729,
+          "url": "https://github.com/xin7355-collab/Tower-Sight/blob/claude/copy-account-setup-check-36mcpq/css/style.css"
+        },
+        {
+          "path": "js/sky.js",
+          "bytes": 10931,
+          "url": "https://github.com/xin7355-collab/Tower-Sight/blob/claude/copy-account-setup-check-36mcpq/js/sky.js"
+        }
+      ],
       "pushedAt": "2026-08-10T23:15:02Z",
       "updatedAt": "2026-08-10T23:00:12Z",
       "language": "JavaScript",
@@ -251,6 +783,11 @@
     {
       "name": "Camera",
       "fullName": "xin7355-collab/Camera",
+      "retention": {
+        "days": 30,
+        "count": 5,
+        "distinct": 1
+      },
       "url": "https://github.com/xin7355-collab/Camera",
       "private": false,
       "fork": false,
@@ -264,6 +801,61 @@
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
+      "treeBytes": 1098804,
+      "treeTruncated": false,
+      "treeFileCount": 138,
+      "largestFiles": [
+        {
+          "path": "package-lock.json",
+          "bytes": 269814,
+          "url": "https://github.com/xin7355-collab/Camera/blob/claude/smart-camera-app-spec-qtgqn7/package-lock.json"
+        },
+        {
+          "path": "android/gradle/wrapper/gradle-wrapper.jar",
+          "bytes": 46175,
+          "url": "https://github.com/xin7355-collab/Camera/blob/claude/smart-camera-app-spec-qtgqn7/android/gradle/wrapper/gradle-wrapper.jar"
+        },
+        {
+          "path": "src/assets/audio/capture_success.wav",
+          "bytes": 35324,
+          "url": "https://github.com/xin7355-collab/Camera/blob/claude/smart-camera-app-spec-qtgqn7/src/assets/audio/capture_success.wav"
+        },
+        {
+          "path": "src/assets/audio/pose_matched.wav",
+          "bytes": 23858,
+          "url": "https://github.com/xin7355-collab/Camera/blob/claude/smart-camera-app-spec-qtgqn7/src/assets/audio/pose_matched.wav"
+        },
+        {
+          "path": "src/features/pose_guide/controllers/poseGuide.test.ts",
+          "bytes": 20403,
+          "url": "https://github.com/xin7355-collab/Camera/blob/claude/smart-camera-app-spec-qtgqn7/src/features/pose_guide/controllers/poseGuide.test.ts"
+        },
+        {
+          "path": "README.md",
+          "bytes": 18772,
+          "url": "https://github.com/xin7355-collab/Camera/blob/claude/smart-camera-app-spec-qtgqn7/README.md"
+        },
+        {
+          "path": "ios/SmartCamera.xcodeproj/project.pbxproj",
+          "bytes": 18379,
+          "url": "https://github.com/xin7355-collab/Camera/blob/claude/smart-camera-app-spec-qtgqn7/ios/SmartCamera.xcodeproj/project.pbxproj"
+        },
+        {
+          "path": "src/assets/silhouettes/couple_facing.png",
+          "bytes": 18238,
+          "url": "https://github.com/xin7355-collab/Camera/blob/claude/smart-camera-app-spec-qtgqn7/src/assets/silhouettes/couple_facing.png"
+        },
+        {
+          "path": "src/assets/silhouettes/influencer_hand_in_hair.png",
+          "bytes": 17792,
+          "url": "https://github.com/xin7355-collab/Camera/blob/claude/smart-camera-app-spec-qtgqn7/src/assets/silhouettes/influencer_hand_in_hair.png"
+        },
+        {
+          "path": "src/assets/silhouettes/full_body_standing.png",
+          "bytes": 17531,
+          "url": "https://github.com/xin7355-collab/Camera/blob/claude/smart-camera-app-spec-qtgqn7/src/assets/silhouettes/full_body_standing.png"
+        }
+      ],
       "pushedAt": "2026-08-16T08:20:30Z",
       "updatedAt": "2026-08-16T08:21:40Z",
       "language": "TypeScript",
@@ -274,6 +866,7 @@
     {
       "name": "xin7355-collab-project-argus-pwa",
       "fullName": "xin7355-collab/xin7355-collab-project-argus-pwa",
+      "retention": null,
       "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa",
       "private": false,
       "fork": false,
@@ -287,6 +880,61 @@
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
+      "treeBytes": 1193644,
+      "treeTruncated": false,
+      "treeFileCount": 141,
+      "largestFiles": [
+        {
+          "path": "package-lock.json",
+          "bytes": 304239,
+          "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/blob/main/package-lock.json"
+        },
+        {
+          "path": "src/components/RadioPanel.tsx",
+          "bytes": 44581,
+          "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/blob/main/src/components/RadioPanel.tsx"
+        },
+        {
+          "path": "src/store/tacticalStore.ts",
+          "bytes": 39450,
+          "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/blob/main/src/store/tacticalStore.ts"
+        },
+        {
+          "path": "src/components/RadarPanel.tsx",
+          "bytes": 34950,
+          "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/blob/main/src/components/RadarPanel.tsx"
+        },
+        {
+          "path": "src/components/FieldOpsPanel.tsx",
+          "bytes": 26971,
+          "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/blob/main/src/components/FieldOpsPanel.tsx"
+        },
+        {
+          "path": "src/components/SettingsPanel.tsx",
+          "bytes": 26496,
+          "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/blob/main/src/components/SettingsPanel.tsx"
+        },
+        {
+          "path": "src/components/RescueControls.tsx",
+          "bytes": 25256,
+          "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/blob/main/src/components/RescueControls.tsx"
+        },
+        {
+          "path": "src/lib/radio.ts",
+          "bytes": 21193,
+          "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/blob/main/src/lib/radio.ts"
+        },
+        {
+          "path": "src/map/TyphoonLayer.tsx",
+          "bytes": 19952,
+          "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/blob/main/src/map/TyphoonLayer.tsx"
+        },
+        {
+          "path": "src/map/RescueLayer.tsx",
+          "bytes": 19537,
+          "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/blob/main/src/map/RescueLayer.tsx"
+        }
+      ],
       "pushedAt": "2026-08-23T09:39:20Z",
       "updatedAt": "2026-08-23T09:39:26Z",
       "language": "TypeScript",
@@ -297,6 +945,11 @@
     {
       "name": "Capy",
       "fullName": "xin7355-collab/Capy",
+      "retention": {
+        "days": 1,
+        "count": 6,
+        "distinct": 1
+      },
       "url": "https://github.com/xin7355-collab/Capy",
       "private": false,
       "fork": false,
@@ -310,6 +963,61 @@
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
+      "treeBytes": 399976,
+      "treeTruncated": false,
+      "treeFileCount": 11,
+      "largestFiles": [
+        {
+          "path": "package-lock.json",
+          "bytes": 217281,
+          "url": "https://github.com/xin7355-collab/Capy/blob/main/package-lock.json"
+        },
+        {
+          "path": "index.html",
+          "bytes": 106654,
+          "url": "https://github.com/xin7355-collab/Capy/blob/main/index.html"
+        },
+        {
+          "path": "public/pwa-512x512.png",
+          "bytes": 41026,
+          "url": "https://github.com/xin7355-collab/Capy/blob/main/public/pwa-512x512.png"
+        },
+        {
+          "path": "public/pwa-192x192.png",
+          "bytes": 15082,
+          "url": "https://github.com/xin7355-collab/Capy/blob/main/public/pwa-192x192.png"
+        },
+        {
+          "path": "public/apple-touch-icon.png",
+          "bytes": 13463,
+          "url": "https://github.com/xin7355-collab/Capy/blob/main/public/apple-touch-icon.png"
+        },
+        {
+          "path": "README.md",
+          "bytes": 2350,
+          "url": "https://github.com/xin7355-collab/Capy/blob/main/README.md"
+        },
+        {
+          "path": "vite.config.js",
+          "bytes": 1978,
+          "url": "https://github.com/xin7355-collab/Capy/blob/main/vite.config.js"
+        },
+        {
+          "path": ".github/workflows/deploy.yml",
+          "bytes": 960,
+          "url": "https://github.com/xin7355-collab/Capy/blob/main/.github/workflows/deploy.yml"
+        },
+        {
+          "path": "public/icon.svg",
+          "bytes": 760,
+          "url": "https://github.com/xin7355-collab/Capy/blob/main/public/icon.svg"
+        },
+        {
+          "path": "package.json",
+          "bytes": 369,
+          "url": "https://github.com/xin7355-collab/Capy/blob/main/package.json"
+        }
+      ],
       "pushedAt": "2026-08-27T23:14:02Z",
       "updatedAt": "2026-08-27T23:14:12Z",
       "language": "HTML",
@@ -320,6 +1028,7 @@
     {
       "name": "pro-terminal-v4",
       "fullName": "xin7355-collab/pro-terminal-v4",
+      "retention": null,
       "url": "https://github.com/xin7355-collab/pro-terminal-v4",
       "private": false,
       "fork": false,
@@ -333,6 +1042,31 @@
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
+      "treeBytes": 105639,
+      "treeTruncated": false,
+      "treeFileCount": 4,
+      "largestFiles": [
+        {
+          "path": "index.html",
+          "bytes": 99005,
+          "url": "https://github.com/xin7355-collab/pro-terminal-v4/blob/main/index.html"
+        },
+        {
+          "path": "ai-news.js",
+          "bytes": 4338,
+          "url": "https://github.com/xin7355-collab/pro-terminal-v4/blob/main/ai-news.js"
+        },
+        {
+          "path": "finmind.js",
+          "bytes": 2165,
+          "url": "https://github.com/xin7355-collab/pro-terminal-v4/blob/main/finmind.js"
+        },
+        {
+          "path": "vercel.json",
+          "bytes": 131,
+          "url": "https://github.com/xin7355-collab/pro-terminal-v4/blob/main/vercel.json"
+        }
+      ],
       "pushedAt": "2026-05-02T14:28:21Z",
       "updatedAt": "2026-05-02T14:28:24Z",
       "language": "HTML",
@@ -343,6 +1077,7 @@
     {
       "name": "argus-pwa",
       "fullName": "xin7355-collab/argus-pwa",
+      "retention": null,
       "url": "https://github.com/xin7355-collab/argus-pwa",
       "private": false,
       "fork": false,
@@ -356,6 +1091,10 @@
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
+      "treeBytes": null,
+      "treeTruncated": false,
+      "treeFileCount": null,
+      "largestFiles": [],
       "pushedAt": "2026-08-11T05:20:50Z",
       "updatedAt": "2026-08-11T05:20:50Z",
       "language": null,
@@ -1481,6 +2220,19 @@
     },
     {
       "kind": "artifact",
+      "id": 9673774789,
+      "repo": "xin7355-collab/tool",
+      "name": "github-pages",
+      "bytes": 17153983,
+      "createdAt": "2026-08-28T04:01:30Z",
+      "expiresAt": "2026-08-29T04:01:28Z",
+      "expired": false,
+      "url": "https://github.com/xin7355-collab/tool/actions/runs/33140569246",
+      "reason": "artifact",
+      "severity": "warning"
+    },
+    {
+      "kind": "artifact",
       "id": 9669986330,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
@@ -1853,19 +2605,6 @@
       "expiresAt": "2026-08-27T05:19:41Z",
       "expired": true,
       "url": "https://github.com/xin7355-collab/tool/actions/runs/32933587467",
-      "reason": "expired",
-      "severity": "critical"
-    },
-    {
-      "kind": "artifact",
-      "id": 9593433477,
-      "repo": "xin7355-collab/tool",
-      "name": "github-pages",
-      "bytes": 16656224,
-      "createdAt": "2026-08-26T04:50:55Z",
-      "expiresAt": "2026-08-27T04:50:52Z",
-      "expired": true,
-      "url": "https://github.com/xin7355-collab/tool/actions/runs/32931720098",
       "reason": "expired",
       "severity": "critical"
     },
@@ -2989,11 +3728,773 @@
     }
   ],
   "billing": null,
+  "rateLimit": {
+    "core": {
+      "limit": 5000,
+      "remaining": 5000,
+      "used": 0,
+      "reset": 1787896686000
+    },
+    "search": {
+      "limit": 30,
+      "remaining": 30,
+      "used": 0,
+      "reset": 1787893146000
+    },
+    "graphql": {
+      "limit": 5000,
+      "remaining": 5000,
+      "used": 0,
+      "reset": 1787896686000
+    },
+    "fetchedAt": "2026-08-28T04:58:06.575Z"
+  },
+  "activity": {
+    "windowStart": "2026-08-22T11:40:11Z",
+    "windowEnd": "2026-08-28T04:21:13Z",
+    "totalWrites": 300,
+    "totalCommits": 300,
+    "hourly": [
+      {
+        "key": "2026-08-22T11",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-22T17",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-22T18",
+        "writes": 3,
+        "commits": 3,
+        "repoCount": 2,
+        "repos": [
+          "xin7355-collab/StockAI-DB",
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-22T22",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-22T23",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-23T05",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/Antenna-Tower"
+        ]
+      },
+      {
+        "key": "2026-08-23T06",
+        "writes": 30,
+        "commits": 30,
+        "repoCount": 2,
+        "repos": [
+          "xin7355-collab/Antenna-Tower",
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-23T07",
+        "writes": 14,
+        "commits": 14,
+        "repoCount": 2,
+        "repos": [
+          "xin7355-collab/Antenna-Tower",
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-23T09",
+        "writes": 17,
+        "commits": 17,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/xin7355-collab-project-argus-pwa"
+        ]
+      },
+      {
+        "key": "2026-08-23T11",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/StockAI-DB"
+        ]
+      },
+      {
+        "key": "2026-08-24T00",
+        "writes": 3,
+        "commits": 3,
+        "repoCount": 2,
+        "repos": [
+          "xin7355-collab/tool",
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-24T01",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/StockAI-DB"
+        ]
+      },
+      {
+        "key": "2026-08-24T02",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-24T04",
+        "writes": 6,
+        "commits": 6,
+        "repoCount": 2,
+        "repos": [
+          "xin7355-collab/GALEPOST",
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-24T05",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-24T08",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-24T10",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-24T12",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-24T20",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-24T21",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-24T23",
+        "writes": 3,
+        "commits": 3,
+        "repoCount": 3,
+        "repos": [
+          "xin7355-collab/StockAI-DB",
+          "xin7355-collab/GALEPOST",
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-25T01",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-25T03",
+        "writes": 3,
+        "commits": 3,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-25T04",
+        "writes": 3,
+        "commits": 3,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/StockAI-DB"
+        ]
+      },
+      {
+        "key": "2026-08-25T05",
+        "writes": 4,
+        "commits": 4,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/StockAI-DB"
+        ]
+      },
+      {
+        "key": "2026-08-25T06",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/StockAI-DB"
+        ]
+      },
+      {
+        "key": "2026-08-25T07",
+        "writes": 3,
+        "commits": 3,
+        "repoCount": 2,
+        "repos": [
+          "xin7355-collab/StockAI-DB",
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-25T09",
+        "writes": 42,
+        "commits": 42,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-25T10",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/Capy"
+        ]
+      },
+      {
+        "key": "2026-08-25T11",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/Capy"
+        ]
+      },
+      {
+        "key": "2026-08-25T12",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/Capy"
+        ]
+      },
+      {
+        "key": "2026-08-25T13",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/Capy"
+        ]
+      },
+      {
+        "key": "2026-08-25T21",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/prompt"
+        ]
+      },
+      {
+        "key": "2026-08-25T22",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/prompt"
+        ]
+      },
+      {
+        "key": "2026-08-25T23",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/prompt"
+        ]
+      },
+      {
+        "key": "2026-08-26T00",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/prompt"
+        ]
+      },
+      {
+        "key": "2026-08-26T01",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-26T03",
+        "writes": 5,
+        "commits": 5,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-26T04",
+        "writes": 15,
+        "commits": 15,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-26T05",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-26T07",
+        "writes": 11,
+        "commits": 11,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-26T08",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-26T09",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-26T14",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-26T15",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-26T16",
+        "writes": 6,
+        "commits": 6,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-26T17",
+        "writes": 6,
+        "commits": 6,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-26T22",
+        "writes": 12,
+        "commits": 12,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-26T23",
+        "writes": 8,
+        "commits": 8,
+        "repoCount": 2,
+        "repos": [
+          "xin7355-collab/tool",
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-27T00",
+        "writes": 13,
+        "commits": 13,
+        "repoCount": 2,
+        "repos": [
+          "xin7355-collab/tool",
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-27T01",
+        "writes": 12,
+        "commits": 12,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-27T02",
+        "writes": 6,
+        "commits": 6,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-27T03",
+        "writes": 5,
+        "commits": 5,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-27T05",
+        "writes": 7,
+        "commits": 7,
+        "repoCount": 3,
+        "repos": [
+          "xin7355-collab/GALEPOST",
+          "xin7355-collab/StockAI-DB",
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-27T06",
+        "writes": 3,
+        "commits": 3,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-27T07",
+        "writes": 3,
+        "commits": 3,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-27T08",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-27T09",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-27T10",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-27T11",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/www"
+        ]
+      },
+      {
+        "key": "2026-08-28T00",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/StockAI-DB"
+        ]
+      },
+      {
+        "key": "2026-08-28T01",
+        "writes": 4,
+        "commits": 4,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/Dashboard"
+        ]
+      },
+      {
+        "key": "2026-08-28T02",
+        "writes": 2,
+        "commits": 2,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/Dashboard"
+        ]
+      },
+      {
+        "key": "2026-08-28T03",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/Dashboard"
+        ]
+      },
+      {
+        "key": "2026-08-28T04",
+        "writes": 1,
+        "commits": 1,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      }
+    ],
+    "peakHour": {
+      "key": "2026-08-25T09",
+      "writes": 42,
+      "commits": 42,
+      "repoCount": 1,
+      "repos": [
+        "xin7355-collab/tool"
+      ]
+    },
+    "peakConcurrency": {
+      "key": "2026-08-23T06:53",
+      "writes": 12,
+      "commits": 12,
+      "repoCount": 1,
+      "repos": [
+        "xin7355-collab/tool"
+      ]
+    },
+    "busiestMinutes": [
+      {
+        "key": "2026-08-23T06:53",
+        "writes": 12,
+        "commits": 12,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-25T09:33",
+        "writes": 9,
+        "commits": 9,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-23T06:52",
+        "writes": 7,
+        "commits": 7,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-25T09:34",
+        "writes": 7,
+        "commits": 7,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-25T09:39",
+        "writes": 6,
+        "commits": 6,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-23T06:54",
+        "writes": 5,
+        "commits": 5,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-25T09:38",
+        "writes": 5,
+        "commits": 5,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-23T07:20",
+        "writes": 4,
+        "commits": 4,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-25T09:35",
+        "writes": 4,
+        "commits": 4,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-25T09:40",
+        "writes": 4,
+        "commits": 4,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-25T09:41",
+        "writes": 4,
+        "commits": 4,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      },
+      {
+        "key": "2026-08-26T04:31",
+        "writes": 4,
+        "commits": 4,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      }
+    ],
+    "truncated": true
+  },
   "rate": {
     "limit": 5000,
-    "remaining": 4964,
-    "reset": 1787892634000
+    "remaining": 4951,
+    "reset": 1787896674000
   },
-  "requestCount": 61,
-  "errors": []
+  "requestCount": 79,
+  "errors": [
+    {
+      "path": "/repos/xin7355-collab/argus-pwa/git/trees/main?recursive=1",
+      "message": "HTTP 409: Git Repository is empty.",
+      "status": 409,
+      "at": "2026-08-28T04:58:06.406Z"
+    }
+  ]
 }
