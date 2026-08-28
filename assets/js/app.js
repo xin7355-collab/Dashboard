@@ -9,6 +9,7 @@
 
 import { render } from './ui.js';
 import { collectSnapshot } from './collect.js';
+import { deleteItems } from './cleanup.js';
 import { el } from './charts.js';
 
 const STORE = {
@@ -114,8 +115,59 @@ function paint() {
     rangeDays: state.rangeDays,
     rangeLabel: rangeLabel(state.rangeDays),
     hasToken,
+    canDelete: hasToken,
+    onDelete: runDelete,
   });
   updateChrome();
+}
+
+/**
+ * 執行刪除，並就地把畫面上的數字扣掉，不必等下一次完整掃描。
+ * 刪完卻還顯示舊數字，會讓人以為沒刪成功而重按一次。
+ */
+async function runDelete(items, onProgress) {
+  const token = store.get(STORE.token);
+  if (!token) throw new Error('沒有可用的權杖');
+
+  const result = await deleteItems(items, token, onProgress);
+  if (result.succeeded.length) {
+    applyDeletions(state.snapshot, result.succeeded);
+    if (state.mode === 'live') store.set(STORE.live, JSON.stringify(state.snapshot));
+    paint();
+  }
+  return result;
+}
+
+/** 從快照裡移除已刪除的項目，並把各層級的加總一起扣掉。 */
+function applyDeletions(snap, deleted) {
+  const gone = new Set(deleted.map((i) => `${i.kind}:${i.repo}:${i.id}`));
+  const key = (i) => `${i.kind}:${i.repo}:${i.id}`;
+
+  snap.reclaimable = (snap.reclaimable ?? []).filter((i) => !gone.has(key(i)));
+
+  for (const item of deleted) {
+    const repo = snap.repos?.find((r) => r.fullName === item.repo);
+    if (!repo) continue;
+    if (item.kind === 'artifact') {
+      repo.artifactBytes = Math.max(0, repo.artifactBytes - item.bytes);
+      repo.artifactCount = Math.max(0, repo.artifactCount - 1);
+      snap.totals.artifactBytes = Math.max(0, snap.totals.artifactBytes - item.bytes);
+      snap.counts.artifacts = Math.max(0, snap.counts.artifacts - 1);
+      if (item.expired) {
+        repo.expiredArtifactBytes = Math.max(0, repo.expiredArtifactBytes - item.bytes);
+        snap.totals.expiredArtifactBytes = Math.max(0, snap.totals.expiredArtifactBytes - item.bytes);
+      }
+      if (repo.private) {
+        snap.totals.privateArtifactBytes = Math.max(0, (snap.totals.privateArtifactBytes ?? 0) - item.bytes);
+      }
+      snap.totals.allBytes = Math.max(0, snap.totals.allBytes - item.bytes);
+    } else if (item.kind === 'cache') {
+      repo.cacheBytes = Math.max(0, repo.cacheBytes - item.bytes);
+      repo.cacheCount = Math.max(0, repo.cacheCount - 1);
+      snap.totals.cacheBytes = Math.max(0, snap.totals.cacheBytes - item.bytes);
+      // cache 不計入 allBytes，所以這裡不動總佔用。
+    }
+  }
 }
 
 // ---------------------------------------------------------------- 頂列互動

@@ -127,15 +127,19 @@ async function fetchRepos(gh, login, authed) {
 /** 對單一 repo 打 artifacts / cache / releases / LFS 四個面向。 */
 async function scanRepo(gh, repo) {
   const full = repo.full_name;
-  const [artifacts, cache, releases, usesLfs] = await Promise.all([
+  const [artifacts, cache, caches, releases, usesLfs] = await Promise.all([
     gh.paginate(`/repos/${full}/actions/artifacts`, { max: 300, itemsAt: 'artifacts' }),
     gh.get(`/repos/${full}/actions/cache/usage`),
+    // usage 只給總量，逐筆清單才有 id 與最後存取時間 —— 前者用來顯示，後者才刪得掉。
+    gh.paginate(`/repos/${full}/actions/caches`, { max: 200, itemsAt: 'actions_caches' }),
     gh.paginate(`/repos/${full}/releases`, { max: 100 }),
     detectLfs(gh, full),
   ]);
 
   const artifactItems = artifacts.map((a) => ({
     kind: 'artifact',
+    // id 是刪除端點唯一認得的識別；沒有它就只能看不能動。
+    id: a.id,
     repo: full,
     name: a.name,
     bytes: a.size_in_bytes ?? 0,
@@ -150,6 +154,18 @@ async function scanRepo(gh, repo) {
   const releaseBytes = releases.reduce(
     (n, rel) => n + (rel.assets ?? []).reduce((m, a) => m + (a.size ?? 0), 0), 0);
   const cacheBytes = cache?.active_caches_size_in_bytes ?? 0;
+
+  const cacheItems = caches.map((c) => ({
+    kind: 'cache',
+    id: c.id,
+    repo: full,
+    name: c.key,
+    ref: c.ref ?? null,
+    bytes: c.size_in_bytes ?? 0,
+    createdAt: c.created_at ?? null,
+    lastAccessedAt: c.last_accessed_at ?? null,
+    url: `https://github.com/${full}/actions/caches`,
+  }));
 
   return {
     name: repo.name,
@@ -168,6 +184,7 @@ async function scanRepo(gh, repo) {
     releaseBytes,
     releaseCount: releases.length,
     usesLfs,
+    _cacheItems: cacheItems,
     pushedAt: repo.pushed_at ?? null,
     updatedAt: repo.updated_at ?? null,
     language: repo.language ?? null,
@@ -196,7 +213,7 @@ async function detectLfs(gh, full) {
 }
 
 function stripRepo(r) {
-  const { _artifactItems, ...rest } = r;
+  const { _artifactItems, _cacheItems, ...rest } = r;
   return rest;
 }
 
@@ -356,12 +373,11 @@ function buildReclaimable(repos) {
         severity: a.expired ? 'critical' : 'warning',
       });
     }
-    if (r.cacheBytes > 0) {
+    // 逐筆列出而不是把整個 repo 的 cache 併成一列 —— 併起來就沒辦法只刪其中幾個。
+    for (const c of r._cacheItems) {
+      if (c.bytes <= 0) continue;
       items.push({
-        kind: 'cache', repo: r.fullName,
-        name: `${r.cacheCount} 個 Actions cache`,
-        bytes: r.cacheBytes, createdAt: null, expiresAt: null, expired: false,
-        url: `${r.url}/actions/caches`,
+        ...c, expiresAt: null, expired: false,
         reason: 'cache', severity: 'good',
       });
     }

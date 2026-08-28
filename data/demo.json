@@ -406,61 +406,106 @@
   "reclaimable": [
     {
       "kind": "cache",
+      "id": 901,
       "repo": "xin7355-collab/GALEPOST",
-      "name": "2 個 Actions cache",
-      "bytes": 405004470,
+      "name": "pip-cache-f60d19e3",
+      "ref": "refs/heads/main",
+      "bytes": 202502235,
       "createdAt": null,
-      "expiresAt": null,
-      "expired": false,
+      "lastAccessedAt": "2026-08-07T10:00:00Z",
       "url": "https://github.com/xin7355-collab/GALEPOST/actions/caches",
+      "expiresAt": null,
+      "expired": false,
       "reason": "cache",
       "severity": "good"
     },
     {
       "kind": "cache",
+      "id": 902,
+      "repo": "xin7355-collab/GALEPOST",
+      "name": "docker-layers-63809fa9",
+      "ref": "refs/heads/main",
+      "bytes": 202502235,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-06T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/GALEPOST/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 903,
       "repo": "xin7355-collab/PriceHub",
-      "name": "2 個 Actions cache",
-      "bytes": 290991439,
+      "name": "build-cache-90382689",
+      "ref": "refs/heads/main",
+      "bytes": 145495719,
       "createdAt": null,
-      "expiresAt": null,
-      "expired": false,
+      "lastAccessedAt": "2026-08-22T10:00:00Z",
       "url": "https://github.com/xin7355-collab/PriceHub/actions/caches",
+      "expiresAt": null,
+      "expired": false,
       "reason": "cache",
       "severity": "good"
     },
     {
       "kind": "cache",
+      "id": 904,
+      "repo": "xin7355-collab/PriceHub",
+      "name": "model-weights-29a58103",
+      "ref": "refs/heads/main",
+      "bytes": 145495719,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-26T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/PriceHub/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 905,
       "repo": "xin7355-collab/tool",
-      "name": "3 個 Actions cache",
-      "bytes": 236974987,
+      "name": "build-cache-65974cb3",
+      "ref": "refs/heads/main",
+      "bytes": 78991662,
       "createdAt": null,
-      "expiresAt": null,
-      "expired": false,
+      "lastAccessedAt": "2026-08-23T10:00:00Z",
       "url": "https://github.com/xin7355-collab/tool/actions/caches",
+      "expiresAt": null,
+      "expired": false,
       "reason": "cache",
       "severity": "good"
     },
     {
       "kind": "cache",
-      "repo": "xin7355-collab/StockAI-DB",
-      "name": "6 個 Actions cache",
-      "bytes": 96378529,
+      "id": 906,
+      "repo": "xin7355-collab/tool",
+      "name": "pip-cache-8eb4f16c",
+      "ref": "refs/heads/main",
+      "bytes": 78991662,
       "createdAt": null,
+      "lastAccessedAt": "2026-08-09T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/tool/actions/caches",
       "expiresAt": null,
       "expired": false,
-      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/caches",
       "reason": "cache",
       "severity": "good"
     },
     {
       "kind": "cache",
-      "repo": "xin7355-collab/prompt",
-      "name": "4 個 Actions cache",
-      "bytes": 70499501,
+      "id": 907,
+      "repo": "xin7355-collab/tool",
+      "name": "docker-layers-6f18cd55",
+      "ref": "refs/heads/main",
+      "bytes": 78991662,
       "createdAt": null,
+      "lastAccessedAt": "2026-08-20T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/tool/actions/caches",
       "expiresAt": null,
       "expired": false,
-      "url": "https://github.com/xin7355-collab/prompt/actions/caches",
       "reason": "cache",
       "severity": "good"
     },
@@ -474,7 +519,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/StockAI-DB/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4001
     },
     {
       "kind": "artifact",
@@ -486,7 +532,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/StockAI-DB/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4002
     },
     {
       "kind": "artifact",
@@ -498,7 +545,158 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/StockAI-DB/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4003
+    },
+    {
+      "kind": "cache",
+      "id": 914,
+      "repo": "xin7355-collab/prompt",
+      "name": "docker-layers-66763f71",
+      "ref": "refs/heads/main",
+      "bytes": 17624875,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-24T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/prompt/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 915,
+      "repo": "xin7355-collab/prompt",
+      "name": "setup-python-3.11-198f9136",
+      "ref": "refs/heads/main",
+      "bytes": 17624875,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-25T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/prompt/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 916,
+      "repo": "xin7355-collab/prompt",
+      "name": "pip-cache-f9717f74",
+      "ref": "refs/heads/main",
+      "bytes": 17624875,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-09T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/prompt/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 917,
+      "repo": "xin7355-collab/prompt",
+      "name": "setup-python-3.11-bb7b83f5",
+      "ref": "refs/heads/main",
+      "bytes": 17624875,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-27T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/prompt/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 908,
+      "repo": "xin7355-collab/StockAI-DB",
+      "name": "build-cache-c114b1b4",
+      "ref": "refs/heads/main",
+      "bytes": 16063088,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-23T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 909,
+      "repo": "xin7355-collab/StockAI-DB",
+      "name": "model-weights-d46a0721",
+      "ref": "refs/heads/main",
+      "bytes": 16063088,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-06T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 910,
+      "repo": "xin7355-collab/StockAI-DB",
+      "name": "node-modules-c236d178",
+      "ref": "refs/heads/main",
+      "bytes": 16063088,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-09T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 911,
+      "repo": "xin7355-collab/StockAI-DB",
+      "name": "docker-layers-d465ef22",
+      "ref": "refs/heads/main",
+      "bytes": 16063088,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-12T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 912,
+      "repo": "xin7355-collab/StockAI-DB",
+      "name": "model-weights-37940659",
+      "ref": "refs/heads/main",
+      "bytes": 16063088,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-09T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 913,
+      "repo": "xin7355-collab/StockAI-DB",
+      "name": "model-weights-dfab7dfa",
+      "ref": "refs/heads/main",
+      "bytes": 16063088,
+      "createdAt": null,
+      "lastAccessedAt": "2026-08-22T10:00:00Z",
+      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
     },
     {
       "kind": "artifact",
@@ -510,7 +708,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/prompt/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4004
     },
     {
       "kind": "artifact",
@@ -522,7 +721,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/prompt/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4005
     },
     {
       "kind": "artifact",
@@ -534,7 +734,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/prompt/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4006
     },
     {
       "kind": "artifact",
@@ -546,7 +747,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/prompt/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4007
     },
     {
       "kind": "artifact",
@@ -558,7 +760,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/prompt/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4008
     },
     {
       "kind": "artifact",
@@ -570,7 +773,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/prompt/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4009
     },
     {
       "kind": "artifact",
@@ -582,7 +786,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/prompt/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4010
     },
     {
       "kind": "artifact",
@@ -594,7 +799,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/prompt/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4011
     },
     {
       "kind": "artifact",
@@ -606,7 +812,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/prompt/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4012
     },
     {
       "kind": "artifact",
@@ -618,7 +825,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/prompt/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4013
     },
     {
       "kind": "artifact",
@@ -630,7 +838,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/prompt/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4014
     },
     {
       "kind": "artifact",
@@ -642,7 +851,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/PriceHub/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4015
     },
     {
       "kind": "artifact",
@@ -654,7 +864,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/PriceHub/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4016
     },
     {
       "kind": "artifact",
@@ -666,7 +877,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/GALEPOST/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4017
     },
     {
       "kind": "artifact",
@@ -678,7 +890,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/GALEPOST/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4018
     },
     {
       "kind": "artifact",
@@ -690,7 +903,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/GALEPOST/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4019
     },
     {
       "kind": "artifact",
@@ -702,7 +916,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/GALEPOST/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4020
     },
     {
       "kind": "artifact",
@@ -714,7 +929,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/GALEPOST/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4021
     },
     {
       "kind": "artifact",
@@ -726,7 +942,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/GALEPOST/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4022
     },
     {
       "kind": "artifact",
@@ -738,7 +955,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/GALEPOST/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4023
     },
     {
       "kind": "artifact",
@@ -750,7 +968,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/GALEPOST/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4024
     },
     {
       "kind": "artifact",
@@ -762,7 +981,8 @@
       "expired": true,
       "url": "https://github.com/xin7355-collab/StockAI-DB/actions",
       "reason": "expired",
-      "severity": "critical"
+      "severity": "critical",
+      "id": 4025
     },
     {
       "kind": "artifact",
@@ -774,7 +994,8 @@
       "expired": true,
       "url": "https://github.com/xin7355-collab/StockAI-DB/actions",
       "reason": "expired",
-      "severity": "critical"
+      "severity": "critical",
+      "id": 4026
     },
     {
       "kind": "artifact",
@@ -786,7 +1007,8 @@
       "expired": true,
       "url": "https://github.com/xin7355-collab/PriceHub/actions",
       "reason": "expired",
-      "severity": "critical"
+      "severity": "critical",
+      "id": 4027
     },
     {
       "kind": "artifact",
@@ -798,7 +1020,8 @@
       "expired": true,
       "url": "https://github.com/xin7355-collab/PriceHub/actions",
       "reason": "expired",
-      "severity": "critical"
+      "severity": "critical",
+      "id": 4028
     },
     {
       "kind": "artifact",
@@ -810,7 +1033,8 @@
       "expired": true,
       "url": "https://github.com/xin7355-collab/tool/actions",
       "reason": "expired",
-      "severity": "critical"
+      "severity": "critical",
+      "id": 4029
     },
     {
       "kind": "artifact",
@@ -822,7 +1046,8 @@
       "expired": true,
       "url": "https://github.com/xin7355-collab/tool/actions",
       "reason": "expired",
-      "severity": "critical"
+      "severity": "critical",
+      "id": 4030
     },
     {
       "kind": "artifact",
@@ -834,7 +1059,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/twns/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4031
     },
     {
       "kind": "artifact",
@@ -846,7 +1072,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/tool/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4032
     },
     {
       "kind": "artifact",
@@ -858,7 +1085,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/tool/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4033
     },
     {
       "kind": "artifact",
@@ -870,7 +1098,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/tool/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4034
     },
     {
       "kind": "artifact",
@@ -882,7 +1111,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/tool/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4035
     },
     {
       "kind": "artifact",
@@ -894,7 +1124,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/tool/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4036
     },
     {
       "kind": "artifact",
@@ -906,7 +1137,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/tool/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4037
     },
     {
       "kind": "artifact",
@@ -918,7 +1150,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/tool/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4038
     },
     {
       "kind": "artifact",
@@ -930,7 +1163,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/tool/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4039
     },
     {
       "kind": "artifact",
@@ -942,7 +1176,8 @@
       "expired": false,
       "url": "https://github.com/xin7355-collab/tool/actions",
       "reason": "artifact",
-      "severity": "warning"
+      "severity": "warning",
+      "id": 4040
     }
   ],
   "billing": {

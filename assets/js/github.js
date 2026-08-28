@@ -94,6 +94,32 @@ export class GitHubClient {
     }
   }
 
+  /**
+   * 刪除單一資源。
+   *
+   * 刻意不走 get()/paginate() 的「軟失敗」路徑：刪除的每一次失敗都必須讓
+   * 呼叫端看見並回報給使用者，絕不能默默吞掉讓人以為刪掉了。
+   *
+   * @returns {Promise<{ok: boolean, status: number|null, message: string|null}>}
+   */
+  async delete(path) {
+    const headers = {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    };
+    if (this.token) headers.Authorization = `Bearer ${this.token}`;
+
+    try {
+      this.requestCount++;
+      const res = await fetch(API + path, { method: 'DELETE', headers });
+      if (res.status === 204 || res.status === 200) return { ok: true, status: res.status, message: null };
+      const body = await res.text().catch(() => '');
+      return { ok: false, status: res.status, message: describeDeleteError(res.status, firstLine(body)) };
+    } catch (err) {
+      return { ok: false, status: null, message: `網路錯誤：${err.message}` };
+    }
+  }
+
   /** 依 Link header 逐頁取完整清單。 */
   async paginate(path, { max = 1000, itemsAt = null } = {}) {
     const out = [];
@@ -135,6 +161,14 @@ function parseNextLink(link) {
     if (m) return m[1];
   }
   return null;
+}
+
+/** 把 HTTP 狀態碼翻成使用者看得懂、而且知道下一步怎麼做的訊息。 */
+function describeDeleteError(status, detail) {
+  if (status === 403) return '權限不足：權杖需要 Actions 的「Read and write」權限（目前只有唯讀）。';
+  if (status === 404) return '找不到（可能已經被刪除或過期清掉了）。';
+  if (status === 401) return '權杖無效或已過期。';
+  return `HTTP ${status}：${detail}`;
 }
 
 function firstLine(text) {

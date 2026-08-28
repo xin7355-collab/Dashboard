@@ -46,14 +46,33 @@ GitHub 的「空間」不是一個總池，而是**數個彼此獨立的額度**
 到 [Fine-grained tokens](https://github.com/settings/personal-access-tokens/new) 建立：
 
 - Repository access：**All repositories**
-- Repository permissions：`Metadata: Read`、`Actions: Read`、`Contents: Read`
+- Repository permissions：`Metadata: Read`、`Contents: Read`、`Actions: Read`
 - Account permissions：`Plan: Read` ← 帳單用量需要這個
+
+想在儀表板上**直接刪除** artifacts 與 cache，把 `Actions` 從 `Read` 改成 **`Read and write`**。唯讀權杖按下刪除會得到明確的權限不足提示，不會靜默失敗。
 
 ### 想讓排程也涵蓋所有 repo
 
 Workflow 預設用內建的 `GITHUB_TOKEN`，它只看得到**本 repo** 的 Actions 資料。要讓排程掃描你所有的 repo，到 Settings → Secrets and variables → Actions 新增一個名為 `DASHBOARD_TOKEN` 的 secret，內容是上面那組權杖。
 
 ⚠️ 如果你同時把採集範圍改成 `all`，私人 repo 的名稱與體積就會被 commit 進這個 repo。**只有在這個 repo 是私有的時候才這樣做。**
+
+## 直接清理
+
+「可回收空間」那張卡可以勾選項目後直接刪除，不用一個個跳到 GitHub 頁面。
+
+支援刪除 **Actions artifacts** 與 **Actions cache**（逐筆列出 cache key 與最後存取時間）。
+Release 附件與 Git 內容刻意不提供刪除 —— 那是你的資料，不是建置產生的垃圾。
+
+安全設計：
+
+- 只刪你明確勾選的項目，沒有「一鍵全刪」
+- 確認框攤開講清楚：幾筆、多大、散在哪些 repo
+- 選到**還沒過期**的 artifacts 會另外跳紅色警告，因為那是唯一真的會失去東西的類別
+- 逐筆回報成功／失敗，失敗一定浮上來（例如權杖沒有寫入權限）
+- 刪完就地更新畫面數字，不用等下一次掃描
+
+快捷鍵：**選取已過期**（最安全的一批）、**選取所有 cache**（都能自動重建）。
 
 ## 設定
 

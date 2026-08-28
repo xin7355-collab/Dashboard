@@ -6,6 +6,7 @@ import {
   el, svg, txt, sparkline, trendChart, stackedBar, barList, meter,
   statusBadge, chartCard, dataTable, emptyState,
 } from './charts.js';
+import { isDeletable, summarise } from './cleanup.js';
 
 /** 空間組成的顏色指派：依「實體」固定，不隨排序或篩選改變。 */
 const COMPOSITION = [
@@ -424,37 +425,257 @@ function quotaCard(quotas) {
 
 // ---------------------------------------------------------------- 可回收
 
+const RECLAIM_LABEL = { expired: '過期 artifact', artifact: 'artifact', cache: 'Actions cache' };
+
+const uidOf = (i) => `${i.kind}:${i.repo}:${i.id ?? i.name}`;
+
 function reclaimCard(snap, reclaim, ctx) {
   const items = snap.reclaimable ?? [];
-  const labels = { expired: '過期 artifact', artifact: 'artifact', cache: 'Actions cache' };
+  const selected = new Set();
 
-  const body = items.length
-    ? dataTable(
-        [
-          { label: '項目', key: 'name', cls: 'name',
-            render: (r) => el('a', { href: r.url, target: '_blank', rel: 'noopener', text: r.name }) },
-          { label: 'Repository', key: 'repo', render: (r) => r.repo.split('/')[1] ?? r.repo },
-          { label: '類型', key: 'reason',
-            render: (r) => statusBadge(r.severity, labels[r.reason] ?? r.reason) },
-          { label: '大小', key: 'bytes', numeric: true, render: (r) => fmt.bytes(r.bytes) },
-          { label: '建立', key: 'createdAt', render: (r) => fmt.relativeTime(r.createdAt) },
-          { label: '到期', key: 'expiresAt',
-            render: (r) => r.expired ? '已過期' : fmt.relativeTime(r.expiresAt) },
-        ],
-        items, { sortable: true, cap: true })
-    : emptyState('沒有可回收的項目', 'Actions artifacts 與 cache 都在合理範圍內。');
+  const card = el('section', { class: 'card col-12', id: 'reclaim-card' });
+  const body = el('div');
 
-  const card = el('section', { class: 'card col-12', id: 'reclaim-card' }, [
+  if (!items.length) {
+    card.append(
+      el('div', { class: 'card-head' }, [
+        el('h2', { class: 'card-title', text: '可回收空間' }),
+        el('span', { class: 'spacer' }),
+        statusBadge('good', '無待清理'),
+      ]),
+      el('p', { class: 'card-sub', text: 'Actions artifacts 與 cache 都在合理範圍內。' }),
+      emptyState('沒有可回收的項目'),
+    );
+    return card;
+  }
+
+  // ── 工具列（只有拿得到寫入權杖時才出現）──────────────────────────
+  const countLabel = el('span', { class: 'meter-foot', text: '尚未選取任何項目' });
+  const deleteBtn = el('button', {
+    class: 'btn danger', type: 'button', disabled: 'true',
+    text: '刪除選取項目',
+  });
+
+  const refreshToolbar = () => {
+    const chosen = items.filter((i) => selected.has(uidOf(i)));
+    const bytes = chosen.reduce((n, i) => n + i.bytes, 0);
+    countLabel.textContent = chosen.length
+      ? `已選 ${chosen.length} 項，共 ${fmt.bytes(bytes)}`
+      : '尚未選取任何項目';
+    if (chosen.length) deleteBtn.removeAttribute('disabled');
+    else deleteBtn.setAttribute('disabled', 'true');
+  };
+
+  const setSelection = (predicate) => {
+    selected.clear();
+    items.filter(predicate).filter(isDeletable).forEach((i) => selected.add(uidOf(i)));
+    body.querySelectorAll('input[type=checkbox][data-uid]').forEach((cb) => {
+      cb.checked = selected.has(cb.dataset.uid);
+    });
+    refreshToolbar();
+  };
+
+  const toolbar = el('div', { class: 'toolbar' }, [
+    el('button', { class: 'btn', type: 'button', text: '選取已過期',
+      onclick: () => setSelection((i) => i.expired) }),
+    el('button', { class: 'btn', type: 'button', text: '選取所有 cache',
+      onclick: () => setSelection((i) => i.kind === 'cache') }),
+    el('button', { class: 'btn', type: 'button', text: '清除選取',
+      onclick: () => setSelection(() => false) }),
+    el('span', { class: 'spacer' }),
+    countLabel,
+    deleteBtn,
+  ]);
+
+  deleteBtn.addEventListener('click', () => {
+    const chosen = items.filter((i) => selected.has(uidOf(i)));
+    if (chosen.length) openConfirmDialog(chosen, ctx, () => setSelection(() => false));
+  });
+
+  // ── 表格 ──────────────────────────────────────────────────────
+  const table = el('table', { class: 'data' });
+  const thead = el('thead', {}, [
+    el('tr', {}, [
+      ctx.canDelete ? el('th', { class: 'check-col', scope: 'col' }, [
+        el('span', { class: 'sr-only', text: '選取' }),
+      ]) : null,
+      el('th', { scope: 'col', text: '項目' }),
+      el('th', { scope: 'col', text: 'Repository' }),
+      el('th', { scope: 'col', text: '類型' }),
+      el('th', { class: 'num', scope: 'col', text: '大小' }),
+      el('th', { scope: 'col', text: '最後使用' }),
+      el('th', { scope: 'col', text: '到期' }),
+    ].filter(Boolean)),
+  ]);
+
+  const tbody = el('tbody', {}, items.map((item) => {
+    const deletable = isDeletable(item);
+    const cb = ctx.canDelete
+      ? el('input', {
+          type: 'checkbox', 'data-uid': uidOf(item),
+          'aria-label': `選取 ${item.name}`,
+          ...(deletable ? {} : { disabled: 'true', title: '這一筆缺少可刪除的識別碼' }),
+          onchange: (e) => {
+            if (e.target.checked) selected.add(uidOf(item));
+            else selected.delete(uidOf(item));
+            refreshToolbar();
+          },
+        })
+      : null;
+
+    return el('tr', {}, [
+      ctx.canDelete ? el('td', { class: 'check-col' }, [cb]) : null,
+      el('td', { class: 'name' }, [
+        el('a', { href: item.url, target: '_blank', rel: 'noopener', text: item.name }),
+      ]),
+      el('td', { text: item.repo.split('/')[1] ?? item.repo }),
+      el('td', {}, [statusBadge(item.severity, RECLAIM_LABEL[item.reason] ?? item.reason)]),
+      el('td', { class: 'num', text: fmt.bytes(item.bytes) }),
+      el('td', { text: fmt.relativeTime(item.lastAccessedAt ?? item.createdAt) }),
+      el('td', { text: item.expired ? '已過期' : (item.expiresAt ? fmt.relativeTime(item.expiresAt) : '—') }),
+    ].filter(Boolean));
+  }));
+
+  table.append(thead, tbody);
+  body.append(el('div', { class: 'table-wrap scroll-cap' }, [table]));
+
+  card.append(
     el('div', { class: 'card-head' }, [
       el('h2', { class: 'card-title', text: '可回收空間' }),
       el('span', { class: 'spacer' }),
-      reclaim.safeBytes > 0 ? statusBadge('warning', `可釋出 ${fmt.bytes(reclaim.safeBytes)}`) : statusBadge('good', '無待清理'),
+      reclaim.safeBytes > 0
+        ? statusBadge('warning', `可釋出 ${fmt.bytes(reclaim.safeBytes)}`)
+        : statusBadge('good', '無待清理'),
     ]),
     el('p', { class: 'card-sub',
-      text: '過期的 artifacts 與 Actions cache 刪掉都不會失去無法重建的東西。點項目名稱可直接跳到 GitHub 上對應的頁面清理。' }),
+      text: '過期的 artifacts 與 Actions cache 刪掉都不會失去無法重建的東西。' }),
+    ctx.canDelete
+      ? toolbar
+      : el('div', { class: 'banner info', style: 'margin: 0 0 14px' }, [
+          svg('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.7, 'aria-hidden': 'true' }, [
+            svg('path', { d: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 11v6 M12 7.5v.5', 'stroke-linecap': 'round' }),
+          ]),
+          el('div', { class: 'body' }, [
+            el('strong', { text: '想直接在這裡刪除？' }),
+            el('p', { text: '按右上角「即時掃描」貼上權杖即可。刪除需要權杖具備 Actions 的「Read and write」權限（唯讀權杖只能看）。' }),
+          ]),
+        ]),
     body,
-  ]);
+  );
   return card;
+}
+
+/**
+ * 刪除確認對話框。
+ *
+ * 刪除無法復原，所以這裡不做「你確定嗎？」這種空話，而是把「到底會失去什麼」
+ * 攤開講：幾筆、多大、散在哪些 repo，其中有幾筆是還沒過期的 artifacts
+ * （唯一真的會失去東西的類別，另外用紅字警告）。
+ */
+function openConfirmDialog(chosen, ctx, onDone) {
+  const sum = summarise(chosen);
+  const dialog = el('dialog', { class: 'sheet' });
+
+  const line = (label, value) => el('div', {
+    style: 'display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-bottom:1px solid var(--border)',
+  }, [
+    el('span', { style: 'color: var(--text-secondary)', text: label }),
+    el('span', { style: 'font-weight:600; font-variant-numeric:tabular-nums', text: value }),
+  ]);
+
+  const progress = el('p', { class: 'card-sub', style: 'margin:12px 0 0', hidden: 'true' });
+  const confirmBtn = el('button', { class: 'btn danger', type: 'button', text: `刪除這 ${sum.total} 項` });
+  const cancelBtn = el('button', { class: 'btn', type: 'button', text: '取消',
+    onclick: () => dialog.close() });
+
+  confirmBtn.addEventListener('click', async () => {
+    confirmBtn.setAttribute('disabled', 'true');
+    cancelBtn.setAttribute('disabled', 'true');
+    progress.hidden = false;
+    progress.textContent = '刪除中…';
+
+    const result = await ctx.onDelete(chosen, (done, total) => {
+      progress.textContent = `刪除中… ${done} / ${total}`;
+    });
+
+    dialog.close();
+    onDone();
+    showResult(result);
+  });
+
+  dialog.append(
+    el('div', { class: 'sheet-head' }, [
+      el('h2', { text: '確認刪除' }),
+    ]),
+    el('div', { class: 'sheet-body' }, [
+      el('p', { text: '這個動作無法復原。以下是會被刪掉的東西：' }),
+      el('div', { style: 'margin-top:12px' }, [
+        line('項目數', `${sum.total} 筆`),
+        line('釋出空間', fmt.bytes(sum.bytes)),
+        line('涉及 repository', `${sum.repos.length} 個`),
+        sum.expiredArtifacts ? line('已過期的 artifacts', `${sum.expiredArtifacts} 筆`) : null,
+        sum.caches ? line('Actions cache', `${sum.caches} 筆（會自動重建）`) : null,
+      ].filter(Boolean)),
+      sum.liveArtifacts
+        ? el('div', { class: 'banner critical', style: 'margin:14px 0 0' }, [
+            svg('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.7, 'aria-hidden': 'true' }, [
+              svg('path', { d: 'M12 3 22 20H2z M12 9v4 M12 16.5v.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }),
+            ]),
+            el('div', { class: 'body' }, [
+              el('strong', { text: `其中 ${sum.liveArtifacts} 筆是還沒過期的 artifacts（${fmt.bytes(sum.liveArtifactBytes)}）` }),
+              el('p', { text: '這些是還在保留期內的建置產物，刪掉之後只能重跑 workflow 才會有。cache 和已過期的項目則沒有這個問題。' }),
+            ]),
+          ])
+        : null,
+      sum.undeletable
+        ? el('p', { class: 'card-sub', style: 'margin-top:10px',
+            text: `有 ${sum.undeletable} 筆缺少識別碼會被略過（通常是舊版快照的資料，重新掃描一次就好）。` })
+        : null,
+      progress,
+    ]),
+    el('div', { class: 'sheet-foot' }, [cancelBtn, confirmBtn]),
+  );
+
+  document.body.append(dialog);
+  dialog.addEventListener('close', () => dialog.remove());
+  dialog.showModal();
+}
+
+/** 刪除結果：成功幾筆、失敗幾筆、失敗的原因逐筆列出。 */
+function showResult(result) {
+  const dialog = el('dialog', { class: 'sheet' });
+  const ok = result.succeeded.length;
+  const bad = result.failed.length;
+
+  dialog.append(
+    el('div', { class: 'sheet-head' }, [
+      el('h2', { text: bad ? '部分項目刪除失敗' : '刪除完成' }),
+    ]),
+    el('div', { class: 'sheet-body' }, [
+      el('p', { text: `成功刪除 ${ok} 筆，釋出 ${fmt.bytes(result.bytesFreed)}。` }),
+      bad
+        ? el('div', { style: 'margin-top:12px' }, [
+            el('strong', { text: `${bad} 筆失敗：` }),
+            el('ul', { style: 'margin:8px 0 0; padding-left:18px; color:var(--text-secondary)' },
+              result.failed.slice(0, 8).map((f) =>
+                el('li', { style: 'margin-bottom:4px' }, [
+                  el('code', { text: f.name }),
+                  txt(` — ${f.error}`),
+                ]))),
+          ])
+        : null,
+      el('p', { class: 'card-sub', style: 'margin-top:14px',
+        text: '畫面上的數字會在下一次掃描後更新。' }),
+    ]),
+    el('div', { class: 'sheet-foot' }, [
+      el('button', { class: 'btn primary', type: 'button', text: '知道了',
+        onclick: () => dialog.close() }),
+    ]),
+  );
+
+  document.body.append(dialog);
+  dialog.addEventListener('close', () => dialog.remove());
+  dialog.showModal();
 }
 
 // ---------------------------------------------------------------- 健康度

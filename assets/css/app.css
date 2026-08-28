@@ -424,6 +424,29 @@ main { padding: 20px 24px 56px; max-width: 1480px; margin: 0 auto; }
 .tooltip .tt-val { font-weight: 650; font-variant-numeric: tabular-nums; margin-left: auto; }
 .tooltip .tt-name { color: var(--text-secondary); }
 
+/* ---------------------------------------------------------------- 刪除工具列 */
+
+.toolbar {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  padding: 10px 12px; margin-bottom: 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.toolbar .spacer { flex: 1; min-width: 0; }
+.toolbar .meter-foot { white-space: nowrap; }
+
+/* 破壞性動作獨立配色，不與任何序列色重複，且一定搭配文字說明。 */
+.btn.danger {
+  background: var(--critical); border-color: transparent; color: #fff; font-weight: 550;
+}
+.btn.danger:hover:not([disabled]) { filter: brightness(1.08); }
+.btn.danger[disabled] { background: var(--surface-1); color: var(--text-muted); border-color: var(--border); }
+
+table.data th.check-col, table.data td.check-col { width: 34px; padding-right: 0; }
+table.data input[type="checkbox"] { width: 15px; height: 15px; cursor: pointer; accent-color: var(--series-1); }
+table.data input[type="checkbox"][disabled] { cursor: not-allowed; opacity: .4; }
+
 /* ---------------------------------------------------------------- 表格 */
 
 .table-wrap { overflow-x: auto; margin: 0 -20px; padding: 0 20px; }
