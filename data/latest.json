@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-28T02:27:31.679Z",
+  "generatedAt": "2026-08-28T03:56:16.313Z",
   "scope": "public",
   "source": "action",
   "account": {
@@ -18,16 +18,16 @@
     }
   },
   "totals": {
-    "repoBytes": 1424921600,
-    "artifactBytes": 4959857715,
+    "repoBytes": 1425252352,
+    "artifactBytes": 4963131717,
     "cacheBytes": 1660319113,
     "releaseBytes": 5718367,
     "lfsBytes": null,
-    "expiredArtifactBytes": 2420403673,
+    "expiredArtifactBytes": 2542126637,
     "privateArtifactBytes": 0,
     "privateCacheBytes": 0,
     "packagesCount": null,
-    "allBytes": 6390497682
+    "allBytes": 6394102436
   },
   "counts": {
     "repos": 14,
@@ -36,7 +36,7 @@
     "private": 0,
     "forks": 0,
     "archived": 0,
-    "artifacts": 615,
+    "artifacts": 618,
     "releases": 4,
     "packages": null
   },
@@ -50,7 +50,7 @@
       "archived": false,
       "sizeBytes": 1254303744,
       "artifactBytes": 507789289,
-      "expiredArtifactBytes": 422161148,
+      "expiredArtifactBytes": 473040246,
       "artifactCount": 169,
       "cacheBytes": 0,
       "cacheCount": 0,
@@ -71,9 +71,9 @@
       "private": false,
       "fork": false,
       "archived": false,
-      "sizeBytes": 153015296,
+      "sizeBytes": 153311232,
       "artifactBytes": 3250435254,
-      "expiredArtifactBytes": 1946281666,
+      "expiredArtifactBytes": 2017125532,
       "artifactCount": 300,
       "cacheBytes": 231805817,
       "cacheCount": 1,
@@ -163,17 +163,17 @@
       "private": false,
       "fork": false,
       "archived": false,
-      "sizeBytes": 1091584,
-      "artifactBytes": 5434752,
+      "sizeBytes": 1126400,
+      "artifactBytes": 8708754,
       "expiredArtifactBytes": 0,
-      "artifactCount": 5,
+      "artifactCount": 8,
       "cacheBytes": 0,
       "cacheCount": 0,
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
-      "pushedAt": "2026-08-28T02:27:16Z",
-      "updatedAt": "2026-08-28T02:26:18Z",
+      "pushedAt": "2026-08-28T03:56:00Z",
+      "updatedAt": "2026-08-28T02:30:38Z",
       "language": "JavaScript",
       "stars": 0,
       "openIssues": 1,
@@ -367,66 +367,142 @@
   "reclaimable": [
     {
       "kind": "cache",
+      "id": 7043300797,
       "repo": "xin7355-collab/www",
-      "name": "3 個 Actions cache",
-      "bytes": 730207936,
-      "createdAt": null,
-      "expiresAt": null,
-      "expired": false,
+      "name": "node-cache-Linux-x64-npm-09c8cf0c414c55fe2c4331baf69488fde6c31aac5a57979d2e8bf03ca4daa53a",
+      "ref": "refs/heads/main",
+      "bytes": 247798904,
+      "createdAt": "2026-08-27T07:07:27.897181000Z",
+      "lastAccessedAt": "2026-08-27T11:28:29.478262000Z",
       "url": "https://github.com/xin7355-collab/www/actions/caches",
-      "reason": "cache",
-      "severity": "good"
-    },
-    {
-      "kind": "cache",
-      "repo": "xin7355-collab/xin7355-collab-project-argus-pwa",
-      "name": "4 個 Actions cache",
-      "bytes": 473128120,
-      "createdAt": null,
       "expiresAt": null,
       "expired": false,
-      "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/actions/caches",
       "reason": "cache",
       "severity": "good"
     },
     {
       "kind": "cache",
+      "id": 7023643759,
+      "repo": "xin7355-collab/www",
+      "name": "node-cache-Linux-x64-npm-893d02aef8cfcbffa50489ab048e02d8aad72c746fc91682c984f7b0610a7c82",
+      "ref": "refs/heads/main",
+      "bytes": 245206626,
+      "createdAt": "2026-08-26T17:13:10.549733000Z",
+      "lastAccessedAt": "2026-08-27T06:45:54.864502000Z",
+      "url": "https://github.com/xin7355-collab/www/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 7019865280,
+      "repo": "xin7355-collab/www",
+      "name": "node-cache-Linux-x64-npm-dd483fb12b8393f9873cc6d8cfcbf1315e8ce83d7614a9c40c05798112e5f66e",
+      "ref": "refs/heads/main",
+      "bytes": 237202406,
+      "createdAt": "2026-08-26T14:30:14.680949000Z",
+      "lastAccessedAt": "2026-08-26T17:13:34.369391000Z",
+      "url": "https://github.com/xin7355-collab/www/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 6778898558,
       "repo": "xin7355-collab/StockAI-DB",
-      "name": "1 個 Actions cache",
+      "name": "setup-python-Linux-x64-24.04-Ubuntu-python-3.11.16-pip-09dc15ef98b21e90700ed6968ef2511abf3ec2dd322451f869388c1f5d78704f",
+      "ref": "refs/heads/main",
       "bytes": 231805817,
-      "createdAt": null,
-      "expiresAt": null,
-      "expired": false,
+      "createdAt": "2026-08-19T09:42:20.744624000Z",
+      "lastAccessedAt": "2026-08-27T20:27:10.184453000Z",
       "url": "https://github.com/xin7355-collab/StockAI-DB/actions/caches",
+      "expiresAt": null,
+      "expired": false,
       "reason": "cache",
       "severity": "good"
     },
     {
       "kind": "cache",
+      "id": 6993233402,
       "repo": "xin7355-collab/prompt",
-      "name": "1 個 Actions cache",
+      "name": "node-cache-Linux-x64-npm-9b03387946d780503e16e0f561781892d34ddbbaedff5751742a95ab00a8ee23",
+      "ref": "refs/heads/claude/spell-box-website-b44qen",
       "bytes": 146655766,
-      "createdAt": null,
+      "createdAt": "2026-08-25T21:38:33.450824000Z",
+      "lastAccessedAt": "2026-08-26T00:16:39.013775000Z",
+      "url": "https://github.com/xin7355-collab/prompt/actions/caches",
       "expiresAt": null,
       "expired": false,
-      "url": "https://github.com/xin7355-collab/prompt/actions/caches",
       "reason": "cache",
       "severity": "good"
     },
     {
       "kind": "cache",
-      "repo": "xin7355-collab/Capy",
-      "name": "2 個 Actions cache",
-      "bytes": 73276054,
-      "createdAt": null,
+      "id": 6903996512,
+      "repo": "xin7355-collab/xin7355-collab-project-argus-pwa",
+      "name": "node-cache-Linux-x64-npm-2d2d77b2ca3774bc8d104b9152b94ab9960d20493378c4bf1107c613925165a7",
+      "ref": "refs/pull/9/merge",
+      "bytes": 118283468,
+      "createdAt": "2026-08-23T09:13:31.039949000Z",
+      "lastAccessedAt": "2026-08-23T09:13:31.039949000Z",
+      "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/actions/caches",
       "expiresAt": null,
       "expired": false,
-      "url": "https://github.com/xin7355-collab/Capy/actions/caches",
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 6904323259,
+      "repo": "xin7355-collab/xin7355-collab-project-argus-pwa",
+      "name": "node-cache-Linux-x64-npm-2d2d77b2ca3774bc8d104b9152b94ab9960d20493378c4bf1107c613925165a7",
+      "ref": "refs/pull/12/merge",
+      "bytes": 118282766,
+      "createdAt": "2026-08-23T09:39:28.430066000Z",
+      "lastAccessedAt": "2026-08-23T09:39:28.430066000Z",
+      "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 6904246091,
+      "repo": "xin7355-collab/xin7355-collab-project-argus-pwa",
+      "name": "node-cache-Linux-x64-npm-2d2d77b2ca3774bc8d104b9152b94ab9960d20493378c4bf1107c613925165a7",
+      "ref": "refs/pull/11/merge",
+      "bytes": 118281334,
+      "createdAt": "2026-08-23T09:33:15.075214000Z",
+      "lastAccessedAt": "2026-08-23T09:33:15.075214000Z",
+      "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 6904089642,
+      "repo": "xin7355-collab/xin7355-collab-project-argus-pwa",
+      "name": "node-cache-Linux-x64-npm-2d2d77b2ca3774bc8d104b9152b94ab9960d20493378c4bf1107c613925165a7",
+      "ref": "refs/pull/10/merge",
+      "bytes": 118280552,
+      "createdAt": "2026-08-23T09:20:49.814729000Z",
+      "lastAccessedAt": "2026-08-23T09:20:49.814729000Z",
+      "url": "https://github.com/xin7355-collab/xin7355-collab-project-argus-pwa/actions/caches",
+      "expiresAt": null,
+      "expired": false,
       "reason": "cache",
       "severity": "good"
     },
     {
       "kind": "artifact",
+      "id": 9550537510,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-0",
       "bytes": 72851862,
@@ -439,6 +515,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9664163312,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70931574,
@@ -451,18 +528,20 @@
     },
     {
       "kind": "artifact",
+      "id": 9632240801,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70843866,
       "createdAt": "2026-08-27T03:32:28Z",
       "expiresAt": "2026-08-28T03:32:18Z",
-      "expired": false,
+      "expired": true,
       "url": "https://github.com/xin7355-collab/StockAI-DB/actions/runs/33036615558",
-      "reason": "artifact",
-      "severity": "warning"
+      "reason": "expired",
+      "severity": "critical"
     },
     {
       "kind": "artifact",
+      "id": 9603006012,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70843804,
@@ -475,6 +554,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9629459373,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70843750,
@@ -487,6 +567,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9605792886,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70841293,
@@ -499,6 +580,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9603440189,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70841097,
@@ -511,6 +593,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9603485712,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70840923,
@@ -523,6 +606,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9617644341,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70840459,
@@ -535,6 +619,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9621786343,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70840455,
@@ -547,6 +632,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9594319582,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70833912,
@@ -559,6 +645,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9594100201,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70833692,
@@ -571,6 +658,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9593990572,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70833085,
@@ -583,6 +671,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9594213785,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70832734,
@@ -595,6 +684,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9593868690,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70832203,
@@ -607,6 +697,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9593759600,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70831811,
@@ -619,6 +710,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9593651145,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70831490,
@@ -631,6 +723,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9665092942,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70819305,
@@ -643,6 +736,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9664590213,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70818964,
@@ -655,6 +749,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9643815343,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70483898,
@@ -667,6 +762,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9647488189,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70483435,
@@ -679,6 +775,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9652544451,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70481211,
@@ -691,6 +788,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9646895904,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70480003,
@@ -703,6 +801,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9663144271,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70476672,
@@ -715,6 +814,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9642703325,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70476216,
@@ -727,6 +827,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9634531360,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70444141,
@@ -739,6 +840,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9634325610,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70443013,
@@ -751,6 +853,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9670437713,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70418254,
@@ -763,6 +866,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9670502462,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70417455,
@@ -775,6 +879,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9671954192,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70417072,
@@ -787,6 +892,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9670104164,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
       "bytes": 70416596,
@@ -799,6 +905,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9261002277,
       "repo": "xin7355-collab/Camera",
       "name": "smart-camera-apk",
       "bytes": 38078660,
@@ -811,6 +918,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9260127713,
       "repo": "xin7355-collab/Camera",
       "name": "smart-camera-apk",
       "bytes": 38042093,
@@ -823,6 +931,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9259016660,
       "repo": "xin7355-collab/Camera",
       "name": "smart-camera-apk",
       "bytes": 37778602,
@@ -835,6 +944,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9258432731,
       "repo": "xin7355-collab/Camera",
       "name": "smart-camera-apk",
       "bytes": 37630113,
@@ -847,6 +957,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9258056239,
       "repo": "xin7355-collab/Camera",
       "name": "smart-camera-apk",
       "bytes": 37630111,
@@ -858,7 +969,38 @@
       "severity": "warning"
     },
     {
+      "kind": "cache",
+      "id": 6974458148,
+      "repo": "xin7355-collab/Capy",
+      "name": "node-cache-Linux-x64-npm-e370543f8e5c85c536d881950d8865b64841d06aa09debb90779e172e17fa9a2",
+      "ref": "refs/heads/main",
+      "bytes": 36638212,
+      "createdAt": "2026-08-25T12:19:38.333993000Z",
+      "lastAccessedAt": "2026-08-27T23:14:11.604826000Z",
+      "url": "https://github.com/xin7355-collab/Capy/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
+      "kind": "cache",
+      "id": 6974522928,
+      "repo": "xin7355-collab/Capy",
+      "name": "node-cache-Linux-x64-npm-e370543f8e5c85c536d881950d8865b64841d06aa09debb90779e172e17fa9a2",
+      "ref": "refs/heads/claude/drip-matrix-pwa-setup-i8aijs",
+      "bytes": 36637842,
+      "createdAt": "2026-08-25T12:21:42.417645000Z",
+      "lastAccessedAt": "2026-08-25T13:13:48.511527000Z",
+      "url": "https://github.com/xin7355-collab/Capy/actions/caches",
+      "expiresAt": null,
+      "expired": false,
+      "reason": "cache",
+      "severity": "good"
+    },
+    {
       "kind": "artifact",
+      "id": 9587902244,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-68e5f36",
       "bytes": 30794095,
@@ -871,6 +1013,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9587214773,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-3fe8ae4",
       "bytes": 30782235,
@@ -883,6 +1026,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9587826661,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-8d4181e",
       "bytes": 30781888,
@@ -895,6 +1039,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9585244091,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-731ff2c",
       "bytes": 30781426,
@@ -907,6 +1052,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9583900754,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-77c5f96",
       "bytes": 30781108,
@@ -919,6 +1065,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9277760632,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-bb31e38",
       "bytes": 30775918,
@@ -931,6 +1078,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9256789512,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-f9f5a36",
       "bytes": 30775561,
@@ -943,6 +1091,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9247425443,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-f14d92e",
       "bytes": 30775053,
@@ -955,6 +1104,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9245464045,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-1d06375",
       "bytes": 30775031,
@@ -967,6 +1117,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9246568156,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-fc6625a",
       "bytes": 30775004,
@@ -979,6 +1130,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9248081033,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-10d3f64",
       "bytes": 30774977,
@@ -991,6 +1143,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9245323847,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-34b50c8",
       "bytes": 30773796,
@@ -1003,6 +1156,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9244929164,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-e960e38",
       "bytes": 30773761,
@@ -1015,6 +1169,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9244625848,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-fb7cdcd",
       "bytes": 30772844,
@@ -1027,6 +1182,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9244477538,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-f07ef8b",
       "bytes": 30772583,
@@ -1039,6 +1195,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9239982929,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-2aa5f2a",
       "bytes": 30769983,
@@ -1051,6 +1208,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9241473578,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-1c91234",
       "bytes": 30769775,
@@ -1063,6 +1221,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9241482108,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-f482499",
       "bytes": 30769768,
@@ -1075,6 +1234,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9241114473,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-24c6f13",
       "bytes": 30769669,
@@ -1087,6 +1247,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9241366591,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-b5f73cc",
       "bytes": 30769266,
@@ -1099,6 +1260,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9235758147,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-f7b8b9a",
       "bytes": 30768537,
@@ -1111,6 +1273,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9220903003,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-e846143",
       "bytes": 30768389,
@@ -1123,6 +1286,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9236014926,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-d40596b",
       "bytes": 30768249,
@@ -1135,6 +1299,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9205583260,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-cc1ab55",
       "bytes": 30767767,
@@ -1147,6 +1312,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9206178114,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-36c5af8",
       "bytes": 30767387,
@@ -1159,6 +1325,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9178629653,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-40f5c03",
       "bytes": 30767264,
@@ -1171,6 +1338,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9177383555,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-eafcd3c",
       "bytes": 30766833,
@@ -1183,6 +1351,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9175649701,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-2c0dde7",
       "bytes": 30764090,
@@ -1195,6 +1364,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9174262249,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-3640f09",
       "bytes": 30761825,
@@ -1207,6 +1377,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9171114990,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-85b473c",
       "bytes": 30724321,
@@ -1219,6 +1390,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9171109114,
       "repo": "xin7355-collab/prompt",
       "name": "spellbox-a45a5a7",
       "bytes": 30724304,
@@ -1231,6 +1403,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9662212987,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-0",
       "bytes": 19164656,
@@ -1243,6 +1416,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601688121,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-0",
       "bytes": 19147607,
@@ -1255,6 +1429,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9442327503,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-0",
       "bytes": 19125478,
@@ -1267,6 +1442,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557803479,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-0",
       "bytes": 19120302,
@@ -1279,6 +1455,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9515116663,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-0",
       "bytes": 19100762,
@@ -1291,6 +1468,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552333930,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-0",
       "bytes": 19031529,
@@ -1303,6 +1481,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9669986330,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 17152478,
@@ -1315,6 +1494,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9630193636,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16972142,
@@ -1327,6 +1507,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9629988164,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16967473,
@@ -1339,30 +1520,33 @@
     },
     {
       "kind": "artifact",
+      "id": 9632225793,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16964513,
       "createdAt": "2026-08-27T03:31:36Z",
       "expiresAt": "2026-08-28T03:31:32Z",
-      "expired": false,
+      "expired": true,
       "url": "https://github.com/xin7355-collab/tool/actions/runs/33036598073",
-      "reason": "artifact",
-      "severity": "warning"
+      "reason": "expired",
+      "severity": "critical"
     },
     {
       "kind": "artifact",
+      "id": 9631198103,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16964343,
       "createdAt": "2026-08-27T02:35:21Z",
       "expiresAt": "2026-08-28T02:35:19Z",
-      "expired": false,
+      "expired": true,
       "url": "https://github.com/xin7355-collab/tool/actions/runs/33033713820",
-      "reason": "artifact",
-      "severity": "warning"
+      "reason": "expired",
+      "severity": "critical"
     },
     {
       "kind": "artifact",
+      "id": 9630799753,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16964115,
@@ -1375,6 +1559,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9655238826,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16962829,
@@ -1387,6 +1572,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9630294851,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16960967,
@@ -1399,6 +1585,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9627232380,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16957608,
@@ -1411,6 +1598,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9627186465,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16955004,
@@ -1423,6 +1611,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9628816039,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16952554,
@@ -1435,6 +1624,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9630610804,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16950879,
@@ -1447,6 +1637,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9628724704,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16950608,
@@ -1459,6 +1650,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9628842882,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16950313,
@@ -1471,18 +1663,20 @@
     },
     {
       "kind": "artifact",
+      "id": 9631998820,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16950242,
       "createdAt": "2026-08-27T03:18:26Z",
       "expiresAt": "2026-08-28T03:18:21Z",
-      "expired": false,
+      "expired": true,
       "url": "https://github.com/xin7355-collab/tool/actions/runs/33035934610",
-      "reason": "artifact",
-      "severity": "warning"
+      "reason": "expired",
+      "severity": "critical"
     },
     {
       "kind": "artifact",
+      "id": 9614170905,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16950212,
@@ -1495,6 +1689,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9630489719,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16950183,
@@ -1507,6 +1702,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9630213900,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16950182,
@@ -1519,6 +1715,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9627253932,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16949768,
@@ -1531,6 +1728,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601870231,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16799303,
@@ -1543,6 +1741,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9598532693,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16796511,
@@ -1555,6 +1754,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9597256162,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16750865,
@@ -1567,6 +1767,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9597187939,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16748548,
@@ -1579,6 +1780,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9597281405,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16743070,
@@ -1591,6 +1793,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9597434976,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16742704,
@@ -1603,6 +1806,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9597468568,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16742472,
@@ -1615,6 +1819,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9594649734,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16739847,
@@ -1627,6 +1832,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9594098584,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16739245,
@@ -1639,6 +1845,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9594061011,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16682614,
@@ -1651,6 +1858,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9593433477,
       "repo": "xin7355-collab/tool",
       "name": "github-pages",
       "bytes": 16656224,
@@ -1663,6 +1871,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9661759141,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "chips-data",
       "bytes": 10525578,
@@ -1675,6 +1884,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514668538,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "chips-data",
       "bytes": 10523012,
@@ -1687,6 +1897,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550533319,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "chips-data",
       "bytes": 10522962,
@@ -1699,6 +1910,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601200242,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "chips-data",
       "bytes": 10522146,
@@ -1711,6 +1923,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9551739646,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "chips-data",
       "bytes": 10522003,
@@ -1723,6 +1936,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9556853122,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "chips-data",
       "bytes": 10521973,
@@ -1735,6 +1949,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514789901,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-2",
       "bytes": 7793279,
@@ -1747,6 +1962,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601391553,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-2",
       "bytes": 7782444,
@@ -1759,6 +1975,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514872302,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-18",
       "bytes": 7777838,
@@ -1771,6 +1988,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9661923222,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-2",
       "bytes": 7777069,
@@ -1783,6 +2001,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557528318,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-2",
       "bytes": 7774622,
@@ -1795,6 +2014,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9551982526,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-2",
       "bytes": 7772072,
@@ -1807,6 +2027,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550532851,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-2",
       "bytes": 7769562,
@@ -1819,6 +2040,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601502649,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-18",
       "bytes": 7766963,
@@ -1831,6 +2053,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514836944,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-10",
       "bytes": 7766208,
@@ -1843,6 +2066,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9661988325,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-18",
       "bytes": 7761472,
@@ -1855,6 +2079,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557667193,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-18",
       "bytes": 7759171,
@@ -1867,6 +2092,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552140755,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-18",
       "bytes": 7756610,
@@ -1879,6 +2105,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601402631,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-10",
       "bytes": 7755559,
@@ -1891,6 +2118,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550533093,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-18",
       "bytes": 7754121,
@@ -1903,6 +2131,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9662797798,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-10",
       "bytes": 7750152,
@@ -1915,6 +2144,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557541243,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-10",
       "bytes": 7747588,
@@ -1927,6 +2157,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552037481,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-10",
       "bytes": 7745020,
@@ -1939,6 +2170,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514949192,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-16",
       "bytes": 7720228,
@@ -1951,6 +2183,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601368707,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-16",
       "bytes": 7709824,
@@ -1963,6 +2196,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9515013914,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-1",
       "bytes": 7709259,
@@ -1975,6 +2209,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9662046877,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-16",
       "bytes": 7704364,
@@ -1987,6 +2222,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514958224,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-5",
       "bytes": 7703043,
@@ -1999,6 +2235,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557658470,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-16",
       "bytes": 7701742,
@@ -2011,6 +2248,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552061834,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-16",
       "bytes": 7699176,
@@ -2023,6 +2261,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601564246,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-1",
       "bytes": 7698826,
@@ -2035,6 +2274,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550533472,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-16",
       "bytes": 7696511,
@@ -2047,6 +2287,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9662056051,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-1",
       "bytes": 7693449,
@@ -2059,6 +2300,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601483722,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-5",
       "bytes": 7692452,
@@ -2071,6 +2313,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557810006,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-1",
       "bytes": 7690761,
@@ -2083,6 +2326,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552209765,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-1",
       "bytes": 7688177,
@@ -2095,6 +2339,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9662084055,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-5",
       "bytes": 7687056,
@@ -2107,6 +2352,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550533136,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-1",
       "bytes": 7685542,
@@ -2119,6 +2365,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557623368,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-5",
       "bytes": 7684561,
@@ -2131,6 +2378,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514948613,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-6",
       "bytes": 7684180,
@@ -2143,6 +2391,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514934889,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-12",
       "bytes": 7682683,
@@ -2155,6 +2404,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552166344,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-5",
       "bytes": 7682004,
@@ -2167,6 +2417,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514762022,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-3",
       "bytes": 7681887,
@@ -2179,6 +2430,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550533101,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-5",
       "bytes": 7679326,
@@ -2191,6 +2443,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601538412,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-6",
       "bytes": 7673504,
@@ -2203,6 +2456,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601419194,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-12",
       "bytes": 7671615,
@@ -2215,6 +2469,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601367437,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-3",
       "bytes": 7671106,
@@ -2227,6 +2482,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9662054850,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-6",
       "bytes": 7668322,
@@ -2239,6 +2495,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9662005472,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-12",
       "bytes": 7666071,
@@ -2251,6 +2508,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9661871445,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-3",
       "bytes": 7665786,
@@ -2263,6 +2521,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557611255,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-6",
       "bytes": 7665604,
@@ -2275,6 +2534,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557539540,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-12",
       "bytes": 7663827,
@@ -2287,6 +2547,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557553208,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-3",
       "bytes": 7663217,
@@ -2299,6 +2560,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552060375,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-6",
       "bytes": 7663021,
@@ -2311,6 +2573,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552132024,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-12",
       "bytes": 7661279,
@@ -2323,6 +2586,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552024495,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-3",
       "bytes": 7660618,
@@ -2335,6 +2599,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550533324,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-6",
       "bytes": 7660463,
@@ -2347,6 +2612,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550533440,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-12",
       "bytes": 7658966,
@@ -2359,6 +2625,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550533307,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-3",
       "bytes": 7658170,
@@ -2371,6 +2638,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9442735801,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-8",
       "bytes": 7654714,
@@ -2383,6 +2651,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514898044,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-9",
       "bytes": 7649256,
@@ -2395,6 +2664,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514806406,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-7",
       "bytes": 7647527,
@@ -2407,6 +2677,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601462787,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-9",
       "bytes": 7638393,
@@ -2419,6 +2690,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601388154,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-7",
       "bytes": 7636946,
@@ -2431,6 +2703,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9661993792,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-9",
       "bytes": 7633047,
@@ -2443,6 +2716,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9661983404,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-7",
       "bytes": 7631721,
@@ -2455,6 +2729,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557643810,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-9",
       "bytes": 7630554,
@@ -2467,6 +2742,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557584680,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-7",
       "bytes": 7629094,
@@ -2479,6 +2755,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552091375,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-9",
       "bytes": 7627979,
@@ -2491,6 +2768,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552342906,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-7",
       "bytes": 7627376,
@@ -2503,6 +2781,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550533327,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-9",
       "bytes": 7625539,
@@ -2515,6 +2794,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550533334,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-7",
       "bytes": 7623810,
@@ -2527,6 +2807,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514914308,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-4",
       "bytes": 7622059,
@@ -2539,6 +2820,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601413618,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-4",
       "bytes": 7611317,
@@ -2551,6 +2833,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9663448170,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-4",
       "bytes": 7606735,
@@ -2563,6 +2846,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9557568179,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-4",
       "bytes": 7603472,
@@ -2575,6 +2859,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9442036671,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-13",
       "bytes": 7603463,
@@ -2587,6 +2872,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9552829803,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-4",
       "bytes": 7600917,
@@ -2599,6 +2885,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9550533126,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-4",
       "bytes": 7598342,
@@ -2611,6 +2898,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9515005481,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-17",
       "bytes": 7590087,
@@ -2623,6 +2911,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514851277,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-8",
       "bytes": 7588265,
@@ -2635,6 +2924,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9514861340,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-11",
       "bytes": 7584021,
@@ -2647,6 +2937,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9515829893,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-19",
       "bytes": 7580855,
@@ -2659,6 +2950,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601542155,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-17",
       "bytes": 7579281,
@@ -2671,6 +2963,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9601402779,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-8",
       "bytes": 7577115,
@@ -2683,6 +2976,7 @@
     },
     {
       "kind": "artifact",
+      "id": 9662087714,
       "repo": "xin7355-collab/StockAI-DB",
       "name": "mine-data-17",
       "bytes": 7573540,
@@ -2692,86 +2986,14 @@
       "url": "https://github.com/xin7355-collab/StockAI-DB/actions/runs/33107062414",
       "reason": "artifact",
       "severity": "warning"
-    },
-    {
-      "kind": "artifact",
-      "repo": "xin7355-collab/StockAI-DB",
-      "name": "mine-data-11",
-      "bytes": 7572948,
-      "createdAt": "2026-08-26T09:44:04Z",
-      "expiresAt": "2026-08-27T09:44:02Z",
-      "expired": true,
-      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/runs/32951332587",
-      "reason": "expired",
-      "severity": "critical"
-    },
-    {
-      "kind": "artifact",
-      "repo": "xin7355-collab/StockAI-DB",
-      "name": "mine-data-8",
-      "bytes": 7571594,
-      "createdAt": "2026-08-27T19:42:00Z",
-      "expiresAt": "2026-08-28T19:41:59Z",
-      "expired": false,
-      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/runs/33107062414",
-      "reason": "artifact",
-      "severity": "warning"
-    },
-    {
-      "kind": "artifact",
-      "repo": "xin7355-collab/StockAI-DB",
-      "name": "mine-data-17",
-      "bytes": 7571340,
-      "createdAt": "2026-08-25T09:44:44Z",
-      "expiresAt": "2026-08-26T09:44:41Z",
-      "expired": true,
-      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/runs/32829974145",
-      "reason": "expired",
-      "severity": "critical"
-    },
-    {
-      "kind": "artifact",
-      "repo": "xin7355-collab/StockAI-DB",
-      "name": "mine-data-19",
-      "bytes": 7569886,
-      "createdAt": "2026-08-26T10:07:21Z",
-      "expiresAt": "2026-08-27T10:07:18Z",
-      "expired": true,
-      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/runs/32951332587",
-      "reason": "expired",
-      "severity": "critical"
-    },
-    {
-      "kind": "artifact",
-      "repo": "xin7355-collab/StockAI-DB",
-      "name": "mine-data-8",
-      "bytes": 7569428,
-      "createdAt": "2026-08-25T09:38:34Z",
-      "expiresAt": "2026-08-26T09:38:31Z",
-      "expired": true,
-      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/runs/32829974145",
-      "reason": "expired",
-      "severity": "critical"
-    },
-    {
-      "kind": "artifact",
-      "repo": "xin7355-collab/StockAI-DB",
-      "name": "mine-data-17",
-      "bytes": 7568797,
-      "createdAt": "2026-08-25T06:43:47Z",
-      "expiresAt": "2026-08-26T06:43:46Z",
-      "expired": true,
-      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/runs/32813264603",
-      "reason": "expired",
-      "severity": "critical"
     }
   ],
   "billing": null,
   "rate": {
     "limit": 5000,
-    "remaining": 4851,
-    "reset": 1787884398000
+    "remaining": 4964,
+    "reset": 1787892634000
   },
-  "requestCount": 47,
+  "requestCount": 61,
   "errors": []
 }
