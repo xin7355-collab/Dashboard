@@ -347,9 +347,18 @@ function compositionCard(snap) {
       el('span', { class: 'val', text: fmt.bytes(s.value) }),
     ])));
 
+  // 這裡的合計會比 hero 的「總佔用」多出 cache —— cache 能自動重建、也不計入
+  // 任何付費額度，所以不算進總佔用，但仍要顯示，否則人家會以為那不用管。
+  const cacheBytes = snap.totals.cacheBytes ?? 0;
+  const subtitle = total <= 0
+    ? '尚無資料'
+    : cacheBytes > 0
+      ? `合計 ${fmt.bytes(total)}，其中 ${fmt.bytes(cacheBytes)} 是可自動重建的 cache，不計入上方的總佔用`
+      : `合計 ${fmt.bytes(total)}`;
+
   return chartCard({
     title: '空間組成',
-    subtitle: total > 0 ? `合計 ${fmt.bytes(total)}` : '尚無資料',
+    subtitle,
     span: 'col-4',
     chart: el('div', {}, [stackedBar(segments), legend]),
     table: dataTable(
