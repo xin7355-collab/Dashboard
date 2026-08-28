@@ -1,13 +1,13 @@
 [
   {
     "date": "2026-08-28",
-    "repoBytes": 1422430208,
-    "artifactBytes": 0,
-    "expiredArtifactBytes": 0,
-    "cacheBytes": 0,
-    "releaseBytes": 0,
+    "repoBytes": 1424921600,
+    "artifactBytes": 4955918111,
+    "expiredArtifactBytes": 2491235264,
+    "cacheBytes": 1660319113,
+    "releaseBytes": 5718367,
     "lfsBytes": null,
-    "allBytes": 1422430208,
-    "repoCount": 16
+    "allBytes": 6386558078,
+    "repoCount": 14
   }
 ]
