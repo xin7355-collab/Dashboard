@@ -1,0 +1,77 @@
+name: 自動清理 Actions artifacts
+
+# 預設每週一次「只看不刪」的 dry-run，把會被清掉的東西列進 job summary。
+# 真的要動手刪，必須在 config.json 把 cleanup.enabled 設成 true，
+# 而且手動觸發時把 apply 勾起來——自動化的刪除不該只靠一個排程就生效。
+on:
+  schedule:
+    - cron: '15 20 * * 0'
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: '真的刪除（不勾就只列出清單）'
+        type: boolean
+        default: false
+      older_than_days:
+        description: '刪除超過幾天的 artifacts'
+        type: string
+        default: '30'
+      keep_per_name:
+        description: '同名 artifact 保留最新幾份'
+        type: string
+        default: '3'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: artifact-cleanup
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 檢查 DASHBOARD_TOKEN
+        env:
+          TOKEN: ${{ secrets.DASHBOARD_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error title=缺少 DASHBOARD_TOKEN::清理需要一組具備 Actions「Read and write」權限的 fine-grained PAT。詳見 README。"
+            exit 1
+          fi
+
+      - name: 清理
+        id: cleanup
+        env:
+          DASHBOARD_TOKEN: ${{ secrets.DASHBOARD_TOKEN }}
+        run: |
+          node scripts/cleanup.mjs \
+            ${{ inputs.apply && '--apply' || '' }} \
+            --older-than "${{ inputs.older_than_days || '30' }}" \
+            --keep-per-name "${{ inputs.keep_per_name || '3' }}" \
+            | tee /tmp/cleanup.log
+
+      - name: 寫入執行摘要
+        if: always()
+        run: |
+          {
+            echo "## Artifacts 清理"
+            echo
+            if [ "${{ inputs.apply }}" = "true" ]; then
+              echo "模式：**實際刪除**"
+            else
+              echo "模式：dry-run（沒有刪除任何東西）"
+            fi
+            echo
+            echo '```'
+            # 去掉終端機色碼，摘要頁不會渲染它們
+            sed -e 's/\x1b\[[0-9;]*m//g' /tmp/cleanup.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

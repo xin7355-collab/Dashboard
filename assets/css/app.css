@@ -470,6 +470,35 @@ table.data a:hover { text-decoration: underline; }
 table.data .muted { color: var(--text-muted); }
 .scroll-cap { max-height: 380px; overflow-y: auto; }
 
+/* ---------------------------------------------------------------- 風險項目 */
+
+.finding-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px 28px; }
+.finding { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.finding-head { display: flex; align-items: center; gap: 10px; }
+.finding-label { font-size: 13px; font-weight: 550; }
+.finding-head .spacer { flex: 1; min-width: 0; }
+
+/* ---------------------------------------------------------------- 操作說明 */
+
+details.howto { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 12px; }
+details.howto > summary {
+  cursor: pointer; font-size: 12.5px; color: var(--text-secondary);
+  list-style: none; display: flex; align-items: center; gap: 6px;
+}
+details.howto > summary::-webkit-details-marker { display: none; }
+details.howto > summary::before { content: '▸'; color: var(--text-muted); transition: transform .15s ease; }
+details.howto[open] > summary::before { transform: rotate(90deg); }
+details.howto > summary:hover { color: var(--text-primary); }
+details.howto > div { padding-top: 10px; font-size: 12.5px; color: var(--text-secondary); line-height: 1.7; }
+details.howto p { margin: 0 0 8px; }
+details.howto ul { margin: 0; padding-left: 18px; }
+details.howto li { margin-bottom: 5px; }
+details.howto pre {
+  margin: 8px 0; padding: 10px 12px; overflow-x: auto;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-family: var(--font-mono); font-size: 11.5px; line-height: 1.6; color: var(--text-primary);
+}
+
 /* ---------------------------------------------------------------- 空狀態 */
 
 .empty {

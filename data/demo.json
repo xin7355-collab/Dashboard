@@ -55,7 +55,42 @@
       "language": "Python",
       "stars": 1,
       "openIssues": 0,
-      "defaultBranch": "main"
+      "defaultBranch": "main",
+      "largestFiles": [
+        {
+          "path": "data/raw_videos/2026-08-lecture-01.mp4",
+          "bytes": 412000000,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/data/raw_videos/2026-08-lecture-01.mp4"
+        },
+        {
+          "path": "data/raw_videos/2026-08-lecture-02.mp4",
+          "bytes": 388000000,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/data/raw_videos/2026-08-lecture-02.mp4"
+        },
+        {
+          "path": "models/whisper-large-v3.bin",
+          "bytes": 310000000,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/models/whisper-large-v3.bin"
+        },
+        {
+          "path": "data/transcripts/archive.jsonl",
+          "bytes": 47000000,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/data/transcripts/archive.jsonl"
+        },
+        {
+          "path": "notebooks/exploration.ipynb",
+          "bytes": 12000000,
+          "url": "https://github.com/xin7355-collab/tool/blob/main/notebooks/exploration.ipynb"
+        }
+      ],
+      "treeBytes": 225760112,
+      "treeFileCount": 503,
+      "treeTruncated": false,
+      "retention": {
+        "days": 7,
+        "count": 11,
+        "distinct": 1
+      }
     },
     {
       "name": "StockAI-DB",
@@ -78,7 +113,37 @@
       "language": "HTML",
       "stars": 0,
       "openIssues": 3,
-      "defaultBranch": "main"
+      "defaultBranch": "main",
+      "largestFiles": [
+        {
+          "path": "data/ohlcv-2020-2026.parquet",
+          "bytes": 88000000,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/data/ohlcv-2020-2026.parquet"
+        },
+        {
+          "path": "data/fundamentals.sqlite",
+          "bytes": 34000000,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/data/fundamentals.sqlite"
+        },
+        {
+          "path": "public/assets/hero-video.mp4",
+          "bytes": 21000000,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/public/assets/hero-video.mp4"
+        },
+        {
+          "path": "docs/report.pdf",
+          "bytes": 4200000,
+          "url": "https://github.com/xin7355-collab/StockAI-DB/blob/main/docs/report.pdf"
+        }
+      ],
+      "treeBytes": 169280000,
+      "treeFileCount": 839,
+      "treeTruncated": false,
+      "retention": {
+        "days": 30,
+        "count": 5,
+        "distinct": 1
+      }
     },
     {
       "name": "PriceHub",
@@ -101,7 +166,27 @@
       "language": "Python",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "claude/project-setup-auto-merge-q71rho"
+      "defaultBranch": "claude/project-setup-auto-merge-q71rho",
+      "largestFiles": [
+        {
+          "path": "data/history.csv",
+          "bytes": 3100000,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/data/history.csv"
+        },
+        {
+          "path": "assets/logo.png",
+          "bytes": 900000,
+          "url": "https://github.com/xin7355-collab/PriceHub/blob/claude/project-setup-auto-merge-q71rho/assets/logo.png"
+        }
+      ],
+      "treeBytes": 4600000,
+      "treeFileCount": 502,
+      "treeTruncated": false,
+      "retention": {
+        "days": 7,
+        "count": 4,
+        "distinct": 1
+      }
     },
     {
       "name": "prompt",
@@ -124,7 +209,27 @@
       "language": "TypeScript",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "claude/spell-box-website-b44qen"
+      "defaultBranch": "claude/spell-box-website-b44qen",
+      "largestFiles": [
+        {
+          "path": "public/demo.gif",
+          "bytes": 2400000,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/public/demo.gif"
+        },
+        {
+          "path": "src/data/corpus.json",
+          "bytes": 1800000,
+          "url": "https://github.com/xin7355-collab/prompt/blob/claude/spell-box-website-b44qen/src/data/corpus.json"
+        }
+      ],
+      "treeBytes": 4830000,
+      "treeFileCount": 641,
+      "treeTruncated": false,
+      "retention": {
+        "days": 90,
+        "count": 11,
+        "distinct": 1
+      }
     },
     {
       "name": "GALEPOST",
@@ -147,7 +252,16 @@
       "language": "HTML",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "claude/feng-shao-lgn3wn"
+      "defaultBranch": "claude/feng-shao-lgn3wn",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": {
+        "days": 90,
+        "count": 8,
+        "distinct": 1
+      }
     },
     {
       "name": "twns",
@@ -170,7 +284,16 @@
       "language": "Python",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "claude/new-session-2l8pqb"
+      "defaultBranch": "claude/new-session-2l8pqb",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": {
+        "days": 7,
+        "count": 1,
+        "distinct": 1
+      }
     },
     {
       "name": "www",
@@ -193,7 +316,12 @@
       "language": "TypeScript",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "main"
+      "defaultBranch": "main",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": null
     },
     {
       "name": "Antenna-Tower",
@@ -216,7 +344,12 @@
       "language": "JavaScript",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "main"
+      "defaultBranch": "main",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": null
     },
     {
       "name": "Tower-Sight",
@@ -239,7 +372,12 @@
       "language": "JavaScript",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "claude/copy-account-setup-check-36mcpq"
+      "defaultBranch": "claude/copy-account-setup-check-36mcpq",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": null
     },
     {
       "name": "Camera",
@@ -262,7 +400,12 @@
       "language": "TypeScript",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "claude/smart-camera-app-spec-qtgqn7"
+      "defaultBranch": "claude/smart-camera-app-spec-qtgqn7",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": null
     },
     {
       "name": "xin7355-collab-project-argus-pwa",
@@ -285,7 +428,12 @@
       "language": "TypeScript",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "main"
+      "defaultBranch": "main",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": null
     },
     {
       "name": "Capy",
@@ -308,7 +456,12 @@
       "language": "HTML",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "main"
+      "defaultBranch": "main",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": null
     },
     {
       "name": "gdp-dashboard",
@@ -331,7 +484,12 @@
       "language": "Python",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "main"
+      "defaultBranch": "main",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": null
     },
     {
       "name": "pro-terminal-v4",
@@ -354,7 +512,12 @@
       "language": "HTML",
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "main"
+      "defaultBranch": "main",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": null
     },
     {
       "name": "argus-pwa",
@@ -377,7 +540,12 @@
       "language": null,
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "main"
+      "defaultBranch": "main",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": null
     },
     {
       "name": "Dashboard",
@@ -400,7 +568,12 @@
       "language": null,
       "stars": 0,
       "openIssues": 0,
-      "defaultBranch": "main"
+      "defaultBranch": "main",
+      "largestFiles": [],
+      "treeBytes": 0,
+      "treeFileCount": 0,
+      "treeTruncated": false,
+      "retention": null
     }
   ],
   "reclaimable": [
@@ -1203,5 +1376,118 @@
   "rate": null,
   "requestCount": 0,
   "errors": [],
-  "demo": true
+  "demo": true,
+  "rateLimit": {
+    "core": {
+      "limit": 5000,
+      "remaining": 1180,
+      "used": 3820,
+      "reset": 1787900000000
+    },
+    "search": null,
+    "graphql": null,
+    "fetchedAt": "2026-08-28T02:40:00Z"
+  },
+  "activity": {
+    "windowStart": "2026-07-14T08:00:00Z",
+    "windowEnd": "2026-08-28T01:00:00Z",
+    "totalWrites": 287,
+    "totalCommits": 612,
+    "hourly": [],
+    "peakHour": {
+      "key": "2026-08-27T14",
+      "writes": 26,
+      "commits": 58,
+      "repoCount": 6,
+      "repos": [
+        "xin7355-collab/tool",
+        "xin7355-collab/StockAI-DB",
+        "xin7355-collab/PriceHub",
+        "xin7355-collab/prompt",
+        "xin7355-collab/GALEPOST",
+        "xin7355-collab/www"
+      ]
+    },
+    "peakConcurrency": {
+      "key": "2026-08-27T14:03",
+      "writes": 11,
+      "commits": 22,
+      "repoCount": 5,
+      "repos": [
+        "xin7355-collab/tool",
+        "xin7355-collab/StockAI-DB",
+        "xin7355-collab/PriceHub",
+        "xin7355-collab/prompt",
+        "xin7355-collab/GALEPOST"
+      ]
+    },
+    "busiestMinutes": [
+      {
+        "key": "2026-08-27T14:03",
+        "writes": 11,
+        "commits": 22,
+        "repoCount": 5,
+        "repos": [
+          "xin7355-collab/tool",
+          "xin7355-collab/StockAI-DB",
+          "xin7355-collab/PriceHub",
+          "xin7355-collab/prompt",
+          "xin7355-collab/GALEPOST"
+        ]
+      },
+      {
+        "key": "2026-08-27T14:04",
+        "writes": 9,
+        "commits": 18,
+        "repoCount": 4,
+        "repos": [
+          "xin7355-collab/tool",
+          "xin7355-collab/StockAI-DB",
+          "xin7355-collab/PriceHub",
+          "xin7355-collab/prompt"
+        ]
+      },
+      {
+        "key": "2026-08-27T14:06",
+        "writes": 6,
+        "commits": 12,
+        "repoCount": 3,
+        "repos": [
+          "xin7355-collab/tool",
+          "xin7355-collab/StockAI-DB",
+          "xin7355-collab/PriceHub"
+        ]
+      },
+      {
+        "key": "2026-08-26T09:12",
+        "writes": 4,
+        "commits": 8,
+        "repoCount": 2,
+        "repos": [
+          "xin7355-collab/tool",
+          "xin7355-collab/StockAI-DB"
+        ]
+      },
+      {
+        "key": "2026-08-25T21:40",
+        "writes": 3,
+        "commits": 6,
+        "repoCount": 2,
+        "repos": [
+          "xin7355-collab/tool",
+          "xin7355-collab/StockAI-DB"
+        ]
+      },
+      {
+        "key": "2026-08-24T11:02",
+        "writes": 5,
+        "commits": 10,
+        "repoCount": 1,
+        "repos": [
+          "xin7355-collab/tool"
+        ]
+      }
+    ],
+    "truncated": true
+  }
 }

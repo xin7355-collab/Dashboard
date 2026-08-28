@@ -58,7 +58,11 @@ export async function collectSnapshot(opts) {
     return detail;
   });
 
-  onProgress('讀取帳單與額度…', 85);
+  onProgress('讀取速率限制與活動紀錄…', 82);
+  const rateLimit = await fetchRateLimit(gh);
+  const activity = await fetchActivity(gh, login);
+
+  onProgress('讀取帳單與額度…', 88);
   const billing = token && includeBilling ? await fetchBilling(gh, login) : null;
   const packages = token && includeBilling ? await fetchPackages(gh) : null;
 
@@ -87,9 +91,104 @@ export async function collectSnapshot(opts) {
     repos: detailed.map(stripRepo),
     reclaimable,
     billing,
+    rateLimit,
+    activity,
     rate: gh.rate,
     requestCount: gh.requestCount,
     errors: gh.errors,
+  };
+}
+
+// ------------------------------------------------ 速率限制與寫入活動
+
+/**
+ * 目前的 API 速率餘額。/rate_limit 本身不計入額度，所以查它是免費的。
+ *
+ * 注意這裡拿到的是「主速率限制」。真正會把帳號擋下來的多半是
+ * 次級限制（secondary rate limit / 濫用偵測），那個沒有任何查詢端點，
+ * 只有在撞上的當下才會以 403 + Retry-After 出現。所以這份資料的用途
+ * 是看趨勢與餘裕，不是保證。
+ */
+async function fetchRateLimit(gh) {
+  const r = await gh.get('/rate_limit');
+  if (!r?.resources) return null;
+  const pick = (k) => {
+    const x = r.resources[k];
+    return x ? { limit: x.limit, remaining: x.remaining, used: x.used ?? x.limit - x.remaining, reset: x.reset * 1000 } : null;
+  };
+  return {
+    core: pick('core'),
+    search: pick('search'),
+    graphql: pick('graphql'),
+    fetchedAt: new Date().toISOString(),
+  };
+}
+
+/**
+ * 從公開事件流重建「寫入活動」時間軸。
+ *
+ * 會觸發 GitHub 次級限制的典型模式是「短時間內大量寫入」，尤其是多個
+ * 自動化工作階段同時往不同 repo 推送。單看每小時總量看不出這件事——
+ * 一小時 60 次平均分布是正常的，60 次擠在同一分鐘就不是。所以這裡同時
+ * 統計「每分鐘同時觸及幾個 repo」，那才是併發的指紋。
+ */
+async function fetchActivity(gh, login) {
+  const events = await gh.paginate(`/users/${login}/events?per_page=100`, { max: 300 });
+  if (!events.length) return null;
+
+  const WRITE_TYPES = new Set([
+    'PushEvent', 'CreateEvent', 'DeleteEvent', 'PullRequestEvent',
+    'IssuesEvent', 'IssueCommentEvent', 'ReleaseEvent', 'PullRequestReviewEvent',
+  ]);
+
+  const writes = events
+    .filter((e) => WRITE_TYPES.has(e.type))
+    .map((e) => ({
+      at: e.created_at,
+      type: e.type,
+      repo: e.repo?.name ?? '?',
+      // PushEvent 的 payload.size 是這次推了幾個 commit，一次推 20 個
+      // 跟推 1 個對速率限制的意義完全不同。
+      weight: e.type === 'PushEvent' ? Math.max(1, e.payload?.size ?? 1) : 1,
+    }))
+    .sort((a, b) => a.at.localeCompare(b.at));
+
+  if (!writes.length) return null;
+
+  const bucket = (iso, unit) => iso.slice(0, unit === 'hour' ? 13 : 16);
+  const roll = (unit) => {
+    const m = new Map();
+    for (const w of writes) {
+      const k = bucket(w.at, unit);
+      const cur = m.get(k) ?? { key: k, writes: 0, commits: 0, repos: new Set() };
+      cur.writes += 1;
+      cur.commits += w.weight;
+      cur.repos.add(w.repo);
+      m.set(k, cur);
+    }
+    return [...m.values()]
+      .map((b) => ({ key: b.key, writes: b.writes, commits: b.commits, repoCount: b.repos.size, repos: [...b.repos] }))
+      .sort((a, b) => a.key.localeCompare(b.key));
+  };
+
+  const hourly = roll('hour');
+  const minutely = roll('minute');
+
+  return {
+    windowStart: writes[0].at,
+    windowEnd: writes.at(-1).at,
+    totalWrites: writes.length,
+    totalCommits: writes.reduce((n, w) => n + w.weight, 0),
+    hourly,
+    peakHour: [...hourly].sort((a, b) => b.commits - a.commits)[0] ?? null,
+    // 這一項是併發的指紋：同一分鐘內動到好幾個 repo。
+    peakConcurrency: [...minutely].sort((a, b) => b.repoCount - a.repoCount || b.writes - a.writes)[0] ?? null,
+    busiestMinutes: [...minutely]
+      .filter((m) => m.repoCount > 1 || m.writes > 3)
+      .sort((a, b) => b.repoCount - a.repoCount || b.writes - a.writes)
+      .slice(0, 12),
+    // 事件流只涵蓋公開活動且最多 300 筆／90 天，資料不完整必須說清楚。
+    truncated: events.length >= 300,
   };
 }
 
@@ -127,13 +226,14 @@ async function fetchRepos(gh, login, authed) {
 /** 對單一 repo 打 artifacts / cache / releases / LFS 四個面向。 */
 async function scanRepo(gh, repo) {
   const full = repo.full_name;
-  const [artifacts, cache, caches, releases, usesLfs] = await Promise.all([
+  const [artifacts, cache, caches, releases, usesLfs, tree] = await Promise.all([
     gh.paginate(`/repos/${full}/actions/artifacts`, { max: 300, itemsAt: 'artifacts' }),
     gh.get(`/repos/${full}/actions/cache/usage`),
     // usage 只給總量，逐筆清單才有 id 與最後存取時間 —— 前者用來顯示，後者才刪得掉。
     gh.paginate(`/repos/${full}/actions/caches`, { max: 200, itemsAt: 'actions_caches' }),
     gh.paginate(`/repos/${full}/releases`, { max: 100 }),
     detectLfs(gh, full),
+    scanTree(gh, full, repo.default_branch ?? 'main'),
   ]);
 
   const artifactItems = artifacts.map((a) => ({
@@ -167,9 +267,12 @@ async function scanRepo(gh, repo) {
     url: `https://github.com/${full}/actions/caches`,
   }));
 
+  const retention = retentionOf(artifactItems);
+
   return {
     name: repo.name,
     fullName: full,
+    retention,
     url: repo.html_url,
     private: Boolean(repo.private),
     fork: Boolean(repo.fork),
@@ -184,6 +287,7 @@ async function scanRepo(gh, repo) {
     releaseBytes,
     releaseCount: releases.length,
     usesLfs,
+    ...tree,
     _cacheItems: cacheItems,
     pushedAt: repo.pushed_at ?? null,
     updatedAt: repo.updated_at ?? null,
@@ -210,6 +314,54 @@ async function detectLfs(gh, full) {
     if (!res.ok) return false;
     return /filter\s*=\s*lfs/.test(await res.text());
   } catch { return false; }
+}
+
+/**
+ * 列出目前分支上最大的檔案。
+ *
+ * 重要限制：這只看得到「現在還在」的檔案。曾經 commit 又刪掉的大檔案
+ * 仍佔著 repo 體積，但 REST API 看不到歷史裡的 blob——那需要 clone 下來跑
+ * git filter-repo --analyze。所以這裡同時回報目前檔案總和，讓人可以跟
+ * repo 的磁碟體積對照，自行判斷是不是歷史殘留。
+ */
+async function scanTree(gh, full, branch) {
+  const tree = await gh.get(`/repos/${full}/git/trees/${branch}?recursive=1`);
+  if (!tree?.tree) return { treeBytes: null, treeTruncated: false, treeFileCount: null, largestFiles: [] };
+
+  const blobs = tree.tree.filter((n) => n.type === 'blob' && typeof n.size === 'number');
+  const largest = [...blobs].sort((a, b) => b.size - a.size).slice(0, 10);
+
+  return {
+    treeBytes: blobs.reduce((n, b) => n + b.size, 0),
+    // 極大的樹會被 GitHub 截斷，這時候「最大檔案」清單並不完整，必須標示出來。
+    treeTruncated: Boolean(tree.truncated),
+    treeFileCount: blobs.length,
+    largestFiles: largest.map((b) => ({
+      path: b.path,
+      bytes: b.size,
+      url: `https://github.com/${full}/blob/${branch}/${b.path.split('/').map(encodeURIComponent).join('/')}`,
+    })),
+  };
+}
+
+/**
+ * 從 artifacts 的 created_at 與 expires_at 推導實際生效的保留天數。
+ *
+ * 比去解析 workflow YAML 可靠得多：YAML 裡沒寫 retention-days 不代表沒有
+ * 保留期（repo 或組織層級都可以設預設值），而這個差值是 GitHub 實際套用的結果。
+ */
+function retentionOf(artifactItems) {
+  const spans = artifactItems
+    .filter((a) => a.createdAt && a.expiresAt)
+    .map((a) => Math.round((new Date(a.expiresAt) - new Date(a.createdAt)) / 86400000))
+    .filter((d) => d > 0);
+  if (!spans.length) return null;
+  // 取眾數而非平均：同一個 repo 可能有幾支 workflow 各自設不同保留期，
+  // 平均會得到一個誰都不是的數字。
+  const tally = new Map();
+  for (const d of spans) tally.set(d, (tally.get(d) ?? 0) + 1);
+  const [days, count] = [...tally].sort((a, b) => b[1] - a[1])[0];
+  return { days, count, distinct: tally.size };
 }
 
 function stripRepo(r) {

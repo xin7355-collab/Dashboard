@@ -7,6 +7,7 @@ import {
   statusBadge, chartCard, dataTable, emptyState,
 } from './charts.js';
 import { isDeletable, summarise } from './cleanup.js';
+import { retentionAudit, duplicateArtifacts, privateCostEstimate, rateRisk } from './analysis.js';
 
 /** 空間組成的顏色指派：依「實體」固定，不隨排序或篩選改變。 */
 const COMPOSITION = [
@@ -36,6 +37,10 @@ export function render(root, ctx) {
     repoRankCard(snap),
     billingCard(snap, ctx),
     reclaimCard(snap, reclaim, ctx),
+    retentionCard(snap, config),
+    costCard(snap, config),
+    bigFilesCard(snap),
+    rateCard(snap, config),
     healthCard(snap, config),
   );
   root.append(grid);
@@ -427,11 +432,15 @@ function quotaCard(quotas) {
 
 const RECLAIM_LABEL = { expired: '過期 artifact', artifact: 'artifact', cache: 'Actions cache' };
 
+/** 同名 artifact 保留幾份。三份夠回溯最近幾次 CI，再多就只是佔空間。 */
+const DUPLICATE_KEEP = 3;
+
 const uidOf = (i) => `${i.kind}:${i.repo}:${i.id ?? i.name}`;
 
 function reclaimCard(snap, reclaim, ctx) {
   const items = snap.reclaimable ?? [];
   const selected = new Set();
+  const dupes = duplicateArtifacts(snap, DUPLICATE_KEEP);
 
   const card = el('section', { class: 'card col-12', id: 'reclaim-card' });
   const body = el('div');
@@ -480,6 +489,16 @@ function reclaimCard(snap, reclaim, ctx) {
       onclick: () => setSelection((i) => i.expired) }),
     el('button', { class: 'btn', type: 'button', text: '選取所有 cache',
       onclick: () => setSelection((i) => i.kind === 'cache') }),
+    el('button', {
+      class: 'btn', type: 'button',
+      text: `同名只留最新 ${DUPLICATE_KEEP} 個`,
+      title: '同一個名字的 artifact 每跑一次 CI 就多一份，除了最新幾份之外幾乎不會再用到',
+      onclick: () => {
+        const { stale } = duplicateArtifacts(snap, DUPLICATE_KEEP);
+        const ids = new Set(stale.map(uidOf));
+        setSelection((i) => ids.has(uidOf(i)));
+      },
+    }),
     el('button', { class: 'btn', type: 'button', text: '清除選取',
       onclick: () => setSelection(() => false) }),
     el('span', { class: 'spacer' }),
@@ -549,6 +568,19 @@ function reclaimCard(snap, reclaim, ctx) {
     ]),
     el('p', { class: 'card-sub',
       text: '過期的 artifacts 與 Actions cache 刪掉都不會失去無法重建的東西。' }),
+    dupes.summary.length
+      ? el('div', { class: 'banner info', style: 'margin: 0 0 14px' }, [
+          svg('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.7, 'aria-hidden': 'true' }, [
+            svg('path', { d: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 11v6 M12 7.5v.5', 'stroke-linecap': 'round' }),
+          ]),
+          el('div', { class: 'body' }, [
+            el('strong', { text: `有 ${dupes.summary.length} 組同名 artifact 重複累積，只留最新 ${DUPLICATE_KEEP} 份可清出 ${fmt.bytes(dupes.bytes)}` }),
+            el('p', { text: dupes.summary.slice(0, 3)
+              .map((g) => `${g.repo.split('/')[1] ?? g.repo} 的 ${g.name} 有 ${g.total} 份`)
+              .join('、') + (dupes.summary.length > 3 ? ' 等' : '') }),
+          ]),
+        ])
+      : null,
     ctx.canDelete
       ? toolbar
       : el('div', { class: 'banner info', style: 'margin: 0 0 14px' }, [
@@ -770,4 +802,275 @@ function sliceHistory(history, days) {
   const sliced = history.filter((h) => h.date >= cutoff);
   // 篩選後至少留兩點，否則趨勢卡會整片空掉，反而更難懂。
   return sliced.length >= 2 ? sliced : history.slice(-2);
+}
+
+// ---------------------------------------------------------------- 大檔案
+
+/**
+ * 每個 repo 目前分支上最大的檔案。
+ *
+ * 這裡刻意同時顯示「目前檔案總和」與「repo 磁碟體積」兩個數字並且不去相減：
+ * 前者是未壓縮的工作目錄大小，後者是壓縮後的 .git，兩者單位上就不可比。
+ * 差距大只能當線索，不能當結論——真要查歷史殘留得 clone 下來跑
+ * git filter-repo --analyze，那是 REST API 做不到的事。
+ */
+function bigFilesCard(snap) {
+  const repos = (snap.repos ?? [])
+    .filter((r) => (r.largestFiles ?? []).length)
+    .sort((a, b) => b.sizeBytes - a.sizeBytes);
+
+  if (!repos.length) {
+    return el('section', { class: 'card col-12' }, [
+      el('div', { class: 'card-head' }, [el('h2', { class: 'card-title', text: 'Repository 內的大檔案' })]),
+      el('p', { class: 'card-sub', text: '找出是哪些檔案讓 repository 變肥' }),
+      emptyState('尚未取得檔案清單', '下一次掃描後就會出現。'),
+    ]);
+  }
+
+  const rows = [];
+  for (const r of repos) {
+    for (const f of r.largestFiles) {
+      if (f.bytes < 100_000) continue;   // 100 KB 以下不值得列，會淹掉真正的問題
+      rows.push({ repo: r.name, repoUrl: r.url, ...f });
+    }
+  }
+  rows.sort((a, b) => b.bytes - a.bytes);
+
+  const truncated = repos.filter((r) => r.treeTruncated);
+  const suspicious = repos.filter((r) => r.treeBytes != null && r.sizeBytes > r.treeBytes * 3 && r.sizeBytes > 50e6);
+
+  return el('section', { class: 'card col-12' }, [
+    el('div', { class: 'card-head' }, [
+      el('h2', { class: 'card-title', text: 'Repository 內的大檔案' }),
+      el('span', { class: 'spacer' }),
+      el('span', { class: 'badge neutral', text: `${rows.length} 個超過 100 KB` }),
+    ]),
+    el('p', { class: 'card-sub',
+      text: '只看得到「目前還在」的檔案。曾經 commit 又刪掉的大檔案仍佔著空間，但 REST API 看不到歷史裡的 blob。' }),
+
+    suspicious.length
+      ? el('div', { class: 'banner partial', style: 'margin: 0 0 14px' }, [
+          svg('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': 1.7, 'aria-hidden': 'true' }, [
+            svg('path', { d: 'M12 3 22 20H2z M12 9v4 M12 16.5v.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }),
+          ]),
+          el('div', { class: 'body' }, [
+            el('strong', { text: `${suspicious.map((r) => r.name).join('、')} 的磁碟體積遠大於目前的檔案總和` }),
+            el('p', { text: '可能是歷史裡留著已刪除的大檔案。壓縮率也會造成差距，所以這只是線索不是結論——要確認得把 repo clone 下來跑 git filter-repo --analyze。' }),
+          ]),
+        ])
+      : null,
+
+    truncated.length
+      ? el('p', { class: 'card-sub', style: 'color: var(--serious)',
+          text: `${truncated.map((r) => r.name).join('、')} 的檔案樹太大被 GitHub 截斷，清單並不完整。` })
+      : null,
+
+    dataTable(
+      [
+        { label: '檔案', key: 'path', cls: 'name',
+          render: (r) => el('a', { href: r.url, target: '_blank', rel: 'noopener', text: r.path }) },
+        { label: 'Repository', key: 'repo' },
+        { label: '大小', key: 'bytes', numeric: true, render: (r) => fmt.bytes(r.bytes) },
+      ],
+      rows, { sortable: true, cap: true }),
+
+    el('div', { style: 'margin-top: 16px' }, [
+      el('p', { class: 'card-sub', style: 'margin-bottom: 8px', text: '各 repository 的目前檔案總和 vs 磁碟體積' }),
+      dataTable(
+        [
+          { label: 'Repository', key: 'name', cls: 'name',
+            render: (r) => el('a', { href: r.url, target: '_blank', rel: 'noopener', text: r.name }) },
+          { label: '檔案數', key: 'treeFileCount', numeric: true,
+            render: (r) => fmt.num(r.treeFileCount ?? 0) },
+          { label: '目前檔案總和', key: 'treeBytes', numeric: true,
+            render: (r) => r.treeBytes == null ? '—' : fmt.bytes(r.treeBytes) },
+          { label: '磁碟體積', key: 'sizeBytes', numeric: true, render: (r) => fmt.bytes(r.sizeBytes) },
+        ],
+        repos, { sortable: true, cap: true }),
+    ]),
+  ]);
+}
+
+// ---------------------------------------------------------------- 保留政策
+
+function retentionCard(snap, config) {
+  const audit = retentionAudit(snap, config);
+  // 全部都拿不到保留期時，不能顯示成「都很合理」——那是不知道，不是沒問題。
+  const unknownRetention = audit.rows.length > 0 && audit.rows.every((r) => r.retentionDays == null);
+  if (!audit.rows.length) {
+    return el('section', { class: 'card col-6' }, [
+      el('div', { class: 'card-head' }, [el('h2', { class: 'card-title', text: 'Artifacts 保留政策' })]),
+      el('p', { class: 'card-sub', text: '治本的做法：讓垃圾自己過期，而不是手動刪' }),
+      emptyState('沒有 artifacts', '目前沒有需要設定保留期的 repository。'),
+    ]);
+  }
+
+  return el('section', { class: 'card col-6' }, [
+    el('div', { class: 'card-head' }, [
+      el('h2', { class: 'card-title', text: 'Artifacts 保留政策' }),
+      el('span', { class: 'spacer' }),
+      audit.totalSaving > 0
+        ? statusBadge('serious', `縮短可省 ${fmt.bytes(audit.totalSaving)}`)
+        : unknownRetention
+          ? el('span', { class: 'badge neutral', text: '保留期未知' })
+          : statusBadge('good', '設定合理'),
+    ]),
+    el('p', { class: 'card-sub',
+      text: unknownRetention
+        ? '保留天數是從 artifacts 的建立與到期時間推算的。目前的快照還沒有這些欄位，下一次掃描後就會出現。'
+        : `保留天數是從 artifacts 的建立與到期時間推算出來的實際值，不是讀 workflow 檔。GitHub 預設 90 天，${audit.defaultCount} 個 repository 還在用預設值。` }),
+
+    dataTable(
+      [
+        { label: 'Repository', key: 'name', cls: 'name',
+          render: (r) => el('a', { href: r.url, target: '_blank', rel: 'noopener', text: r.name }) },
+        { label: '保留', key: 'retentionDays',
+          render: (r) => r.retentionDays == null
+            ? el('span', { class: 'muted', text: '—' })
+            : el('span', {}, [
+                txt(`${r.retentionDays} 天`),
+                r.isDefault ? el('span', { class: 'muted', text: '（預設）' }) : null,
+                r.mixed ? el('span', { class: 'muted', text: '（混用）' }) : null,
+              ].filter(Boolean)) },
+        { label: '目前佔用', key: 'artifactBytes', numeric: true, render: (r) => fmt.bytes(r.artifactBytes) },
+        { label: `改 ${audit.suggestDays} 天可省`, key: 'savingBytes', numeric: true,
+          render: (r) => r.savingBytes > 0
+            ? el('strong', { text: fmt.bytes(r.savingBytes) })
+            : el('span', { class: 'muted', text: '—' }) },
+      ],
+      audit.rows, { sortable: true, cap: true }),
+
+    el('details', { class: 'howto' }, [
+      el('summary', { text: '怎麼改保留天數' }),
+      el('div', {}, [
+        el('p', { text: '在 workflow 的上傳步驟加一行：' }),
+        el('pre', { text: `- uses: actions/upload-artifact@v4\n  with:\n    name: build\n    path: dist/\n    retention-days: ${audit.suggestDays}` }),
+        el('p', { text: '或到 Settings → Actions → General → Artifact and log retention 一次改掉整個 repository 的預設值。' }),
+      ]),
+    ]),
+  ]);
+}
+
+// ---------------------------------------------------------------- 成本試算
+
+function costCard(snap, config) {
+  const est = privateCostEstimate(snap, config);
+  const money = (n) => `${est.currency} ${n.toFixed(2)}`;
+
+  if (!est.rows.length) {
+    return el('section', { class: 'card col-6' }, [
+      el('div', { class: 'card-head' }, [el('h2', { class: 'card-title', text: '轉私人的成本試算' })]),
+      el('p', { class: 'card-sub', text: '公開 repository 的 Actions 儲存免費，轉私人才開始計費' }),
+      emptyState('沒有可試算的公開 repository'),
+    ]);
+  }
+
+  return el('section', { class: 'card col-6' }, [
+    el('div', { class: 'card-head' }, [
+      el('h2', { class: 'card-title', text: '轉私人的成本試算' }),
+      el('span', { class: 'spacer' }),
+      est.allPrivateMonthlyUSD > 0
+        ? statusBadge('warning', `全轉約 ${money(est.allPrivateMonthlyUSD)}／月`)
+        : statusBadge('good', '仍在免費額度內'),
+    ]),
+    el('p', { class: 'card-sub',
+      text: `以 ${est.currency} ${est.pricePerGB}／GB／月估算，扣掉方案內含的 ${fmt.bytes(est.freeBytes)}。只計儲存，不含 Actions 分鐘數——逐 repository 的分鐘數沒有 API 拿得到。` }),
+
+    el('div', { style: 'margin-bottom: 14px' }, [
+      row('全部轉私人的計費量', fmt.bytes(est.totalBytes)),
+      row('扣除免費額度後', fmt.bytes(est.overageBytes)),
+      row('每月約', money(est.allPrivateMonthlyUSD)),
+    ]),
+
+    dataTable(
+      [
+        { label: 'Repository', key: 'name', cls: 'name',
+          render: (r) => el('a', { href: r.url, target: '_blank', rel: 'noopener', text: r.name }) },
+        { label: '計費量', key: 'billableBytes', numeric: true, render: (r) => fmt.bytes(r.billableBytes) },
+        { label: '單獨轉私人／月', key: 'soloMonthlyUSD', numeric: true,
+          render: (r) => r.soloMonthlyUSD > 0 ? money(r.soloMonthlyUSD) : el('span', { class: 'muted', text: '免費額度內' }) },
+      ],
+      est.rows, { sortable: true, cap: true }),
+  ]);
+}
+
+// ---------------------------------------------------------------- 速率風險
+
+/**
+ * 這張卡回答的是「我會不會又被 GitHub 擋下來」。
+ *
+ * 必須講清楚做不到的部分：帳號是否已被封鎖、次級限制的真實門檻，
+ * GitHub 都沒有提供任何查詢端點。這裡顯示的是「已知會觸發封鎖的行為
+ * 模式」有沒有出現在你的活動紀錄裡——是前兆，不是判決。
+ */
+function rateCard(snap, config) {
+  const risk = rateRisk(snap, config);
+  const act = risk.activity;
+
+  return el('section', { class: 'card col-12' }, [
+    el('div', { class: 'card-head' }, [
+      el('h2', { class: 'card-title', text: 'API 速率與寫入活動' }),
+      el('span', { class: 'spacer' }),
+      statusBadge(risk.worst, {
+        good: '沒有風險訊號', warning: '有輕微訊號',
+        serious: '接近門檻', critical: '出現高風險模式',
+      }[risk.worst]),
+    ]),
+    el('p', { class: 'card-sub',
+      text: '帳號是否已被封鎖、次級速率限制的真實門檻，GitHub 都沒有提供查詢端點。這裡看的是「已知會觸發封鎖的行為模式」有沒有出現在你的活動紀錄裡——是前兆，不是判決。' }),
+
+    risk.findings.length
+      ? el('div', { class: 'finding-list' }, risk.findings.map((f) =>
+          el('div', { class: 'finding' }, [
+            el('div', { class: 'finding-head' }, [
+              el('span', { class: 'finding-label', text: f.label }),
+              el('span', { class: 'spacer' }),
+              statusBadge(f.severity, f.value),
+            ]),
+            el('div', { class: 'meter-foot', text: f.detail }),
+          ])))
+      : emptyState('沒有可分析的活動紀錄',
+          '事件流需要權杖才讀得到完整內容，且只涵蓋最近 90 天。'),
+
+    act?.busiestMinutes?.length
+      ? el('div', { style: 'margin-top: 18px' }, [
+          el('p', { class: 'card-sub', style: 'margin-bottom: 8px',
+            text: '寫入最密集的時刻。同一分鐘動到多個 repository，就是多個自動化工作階段並行的指紋。' }),
+          dataTable(
+            [
+              { label: '時間', key: 'key', render: (r) => r.key.replace('T', ' ') },
+              { label: '寫入事件', key: 'writes', numeric: true },
+              { label: 'commit 數', key: 'commits', numeric: true },
+              { label: 'repository 數', key: 'repoCount', numeric: true,
+                render: (r) => r.repoCount >= config.rateLimits.warnConcurrentRepos
+                  ? el('strong', { style: 'color: var(--critical)', text: String(r.repoCount) })
+                  : String(r.repoCount) },
+              { label: '涉及', key: 'repos',
+                render: (r) => r.repos.map((x) => x.split('/')[1] ?? x).join('、') },
+            ],
+            act.busiestMinutes, { sortable: true, cap: true }),
+        ])
+      : null,
+
+    act
+      ? el('p', { class: 'card-sub', style: 'margin-top: 12px' }, [
+          txt(`分析範圍：${fmt.date(act.windowStart, 'long')} 起共 ${fmt.num(act.totalWrites)} 筆寫入事件、${fmt.num(act.totalCommits)} 個 commit。`),
+          act.truncated ? txt('（事件流上限 300 筆，更早的資料看不到。）') : null,
+        ].filter(Boolean))
+      : null,
+
+    el('details', { class: 'howto' }, [
+      el('summary', { text: '被擋下來怎麼辦、又要怎麼避免' }),
+      el('div', {}, [
+        el('p', { text: 'GitHub 的次級速率限制是為了擋自動化濫用，觸發後通常是暫時性的，等一段時間會自動解除。若持續被擋，到 GitHub Support 申訴並說明用途。' }),
+        el('p', { text: '避免再次觸發的實務做法：' }),
+        el('ul', {}, [
+          el('li', { text: '同一時間只讓一個自動化工作階段對 GitHub 寫入，不要多個並行推送。' }),
+          el('li', { text: '把多次小 commit 合併成一次推送，寫入次數比內容量更容易觸發限制。' }),
+          el('li', { text: '收到 403 且帶 Retry-After 標頭時務必照它等待，不要立刻重試。' }),
+          el('li', { text: '每個帳號的內容建立請求約為每分鐘 80 次、每小時 500 次（文件值，實際可能更嚴）。' }),
+        ]),
+      ]),
+    ]),
+  ]);
 }

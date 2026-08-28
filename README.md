@@ -74,6 +74,68 @@ Release 附件與 Git 內容刻意不提供刪除 —— 那是你的資料，�
 
 快捷鍵：**選取已過期**（最安全的一批）、**選取所有 cache**（都能自動重建）。
 
+## 分析功能
+
+### Repository 內的大檔案
+列出每個 repository 目前分支上最大的檔案，直接回答「這個 repo 到底裝了什麼」。
+同時顯示「目前檔案總和」與「磁碟體積」讓你對照——但**刻意不去相減**：前者是未壓縮的
+工作目錄，後者是壓縮後的 `.git`，單位上就不可比。差距大只是線索，要確認歷史裡有沒有
+藏著已刪除的大檔案，得 clone 下來跑 `git filter-repo --analyze`，那是 REST API 做不到的。
+
+### Artifacts 保留政策
+保留天數是從 artifacts 的 `created_at` 與 `expires_at` **推算實際生效值**，不是去解析
+workflow YAML——YAML 裡沒寫 `retention-days` 不代表沒有保留期（repo 和組織層級都能設預設）。
+GitHub 預設 90 天，對每天跑的 workflow 等於留著三個月的建置產物。
+
+### 重複 artifacts
+CI 每跑一次就多一份同名產物。儀表板會算出「同名只留最新 N 份能省多少」，
+並提供一鍵批次選取。
+
+### 轉私人的成本試算
+公開 repository 的 Actions 儲存免費，轉私人才開始計費。先算清楚再決定。
+只計儲存不計 Actions 分鐘數——逐 repository 的分鐘數沒有 API 拿得到，硬掰不如不算。
+價格寫在 `config.json` 的 `pricing`，是公開牌價，會變動。
+
+### API 速率與寫入活動
+多個自動化工作階段同時往 GitHub 推送，容易觸發次級速率限制（secondary rate limit）。
+
+**誠實範圍**：帳號是否已被封鎖、次級限制的真實門檻，GitHub 都**沒有提供任何查詢端點**。
+儀表板能做的是把「已知會觸發封鎖的行為模式」量化出來：
+
+- REST API 主速率餘額與重置時間（`/rate_limit`，查它本身不計入額度）
+- 單一小時最高寫入量，對照文件值的每小時 500 次內容建立門檻
+- **同一分鐘內動到幾個 repository** —— 這是多個自動化階段並行的指紋，單看每小時總量看不出來
+
+這些是**前兆，不是判決**。事件流只涵蓋公開活動、最多 300 筆／90 天。
+
+## 自動清理
+
+`.github/workflows/cleanup.yml` 每週跑一次，把會被清掉的東西列進 job summary。
+
+**預設是 dry-run，而且 `config.json` 的 `cleanup.enabled` 預設 `false`。**
+要真的自動刪除，得同時滿足兩個條件：把 `enabled` 改成 `true`，而且手動觸發時勾選 `apply`。
+一支排程執行的刪除腳本，預設行為必須是安全的那一個。
+
+三條規則（`config.json` 的 `cleanup` 區塊）：
+
+| 規則 | 預設 |
+|---|---|
+| 已過期的 artifacts | 清 |
+| 超過 N 天的 artifacts | 30 天 |
+| 同名 artifact 只留最新 N 份 | 3 份 |
+
+`excludeRepos` 與 `excludeArtifactNames` 優先於上面三條，永遠不會被刪。
+
+本機先看清單：
+
+```bash
+node scripts/cleanup.mjs                    # dry-run，只列不刪
+node scripts/cleanup.mjs --older-than 60    # 換個門檻再看一次
+node scripts/cleanup.mjs --apply            # 真的刪（需先開 enabled）
+```
+
+需要權杖具備 `Actions: Read and write`。
+
 ## 設定
 
 全部在 `config.json`：

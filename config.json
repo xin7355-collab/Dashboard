@@ -3,10 +3,34 @@
   "account": "xin7355-collab",
   "plan": "free",
   "quotas": {
-    "free":       { "sharedStorageGB": 0.5, "actionsMinutes": 2000, "lfsStorageGB": 1, "lfsBandwidthGB": 1, "packagesBandwidthGB": 1 },
-    "pro":        { "sharedStorageGB": 2,   "actionsMinutes": 3000, "lfsStorageGB": 1, "lfsBandwidthGB": 1, "packagesBandwidthGB": 10 },
-    "team":       { "sharedStorageGB": 2,   "actionsMinutes": 3000, "lfsStorageGB": 1, "lfsBandwidthGB": 1, "packagesBandwidthGB": 10 },
-    "enterprise": { "sharedStorageGB": 50,  "actionsMinutes": 50000, "lfsStorageGB": 1, "lfsBandwidthGB": 1, "packagesBandwidthGB": 100 }
+    "free": {
+      "sharedStorageGB": 0.5,
+      "actionsMinutes": 2000,
+      "lfsStorageGB": 1,
+      "lfsBandwidthGB": 1,
+      "packagesBandwidthGB": 1
+    },
+    "pro": {
+      "sharedStorageGB": 2,
+      "actionsMinutes": 3000,
+      "lfsStorageGB": 1,
+      "lfsBandwidthGB": 1,
+      "packagesBandwidthGB": 10
+    },
+    "team": {
+      "sharedStorageGB": 2,
+      "actionsMinutes": 3000,
+      "lfsStorageGB": 1,
+      "lfsBandwidthGB": 1,
+      "packagesBandwidthGB": 10
+    },
+    "enterprise": {
+      "sharedStorageGB": 50,
+      "actionsMinutes": 50000,
+      "lfsStorageGB": 1,
+      "lfsBandwidthGB": 1,
+      "packagesBandwidthGB": 100
+    }
   },
   "advisory": {
     "repoSoftLimitGB": 5,
@@ -22,5 +46,29 @@
     "forecastHorizonDays": 90,
     "staleRepoDays": 180
   },
-  "history": { "retainDays": 400 }
+  "history": {
+    "retainDays": 400
+  },
+  "rateLimits": {
+    "$comment": "GitHub 次級速率限制（secondary rate limit）的公開門檻，用來提早示警。這些數字沒有查詢端點，是文件值，GitHub 未必完全照這個執行。",
+    "contentCreatingPerMinute": 80,
+    "contentCreatingPerHour": 500,
+    "concurrentRequests": 100,
+    "warnConcurrentRepos": 3
+  },
+  "pricing": {
+    "$comment": "用於「轉私人成本試算」。價格為公開牌價，會變動，請對照 GitHub 定價頁確認。",
+    "storagePerGBMonthUSD": 0.25,
+    "actionsLinuxPerMinuteUSD": 0.008,
+    "currency": "USD"
+  },
+  "cleanup": {
+    "$comment": "自動清理排程的規則。enabled 預設 false —— 自動化的刪除必須由你明確開啟；即使開啟，workflow 手動觸發時仍要勾 apply 才會真的刪。",
+    "enabled": false,
+    "olderThanDays": 30,
+    "keepPerName": 3,
+    "includeExpired": true,
+    "excludeRepos": [],
+    "excludeArtifactNames": []
+  }
 }
