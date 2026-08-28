@@ -31,6 +31,19 @@ jobs:
         with:
           node-version: '20'
 
+      # 內建的 GITHUB_TOKEN 是 repo 範圍的安裝權杖，打 /user/repos 會被擋，
+      # 也就是說少了 DASHBOARD_TOKEN，這支排程掃不到任何 repo。與其讓它在
+      # 後面丟出一個難懂的「一個 repository 都沒抓到」，不如在這裡就講清楚。
+      - name: 檢查 DASHBOARD_TOKEN
+        env:
+          TOKEN: ${{ secrets.DASHBOARD_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::error title=缺少 DASHBOARD_TOKEN::請到 Settings → Secrets and variables → Actions 新增名為 DASHBOARD_TOKEN 的 secret，內容是一組 fine-grained PAT（All repositories；Metadata/Actions/Contents 皆 Read-only，Account 的 Plan Read-only）。詳見 README。"
+            exit 1
+          fi
+          echo "✓ DASHBOARD_TOKEN 已設定"
+
       - name: 採集快照
         id: collect
         env:
