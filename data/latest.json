@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-28T02:22:47.954Z",
+  "generatedAt": "2026-08-28T02:25:47.178Z",
   "scope": "public",
   "source": "action",
   "account": {
@@ -19,13 +19,15 @@
   },
   "totals": {
     "repoBytes": 1424921600,
-    "artifactBytes": 4955918111,
+    "artifactBytes": 4957679724,
     "cacheBytes": 1660319113,
     "releaseBytes": 5718367,
     "lfsBytes": null,
-    "expiredArtifactBytes": 2491235264,
+    "expiredArtifactBytes": 2420403673,
+    "privateArtifactBytes": 0,
+    "privateCacheBytes": 0,
     "packagesCount": 0,
-    "allBytes": 6386558078
+    "allBytes": 6388319691
   },
   "counts": {
     "repos": 14,
@@ -34,7 +36,7 @@
     "private": 0,
     "forks": 0,
     "archived": 0,
-    "artifacts": 611,
+    "artifacts": 613,
     "releases": 4,
     "packages": 0
   },
@@ -70,8 +72,8 @@
       "fork": false,
       "archived": false,
       "sizeBytes": 153015296,
-      "artifactBytes": 3250849773,
-      "expiredArtifactBytes": 2017113257,
+      "artifactBytes": 3250435254,
+      "expiredArtifactBytes": 1946281666,
       "artifactCount": 300,
       "cacheBytes": 231805817,
       "cacheCount": 1,
@@ -162,19 +164,19 @@
       "fork": false,
       "archived": false,
       "sizeBytes": 1091584,
-      "artifactBytes": 1080629,
+      "artifactBytes": 3256761,
       "expiredArtifactBytes": 0,
-      "artifactCount": 1,
+      "artifactCount": 3,
       "cacheBytes": 0,
       "cacheCount": 0,
       "releaseBytes": 0,
       "releaseCount": 0,
       "usesLfs": false,
-      "pushedAt": "2026-08-28T01:55:49Z",
-      "updatedAt": "2026-08-28T01:55:59Z",
+      "pushedAt": "2026-08-28T02:25:31Z",
+      "updatedAt": "2026-08-28T02:25:35Z",
       "language": "JavaScript",
       "stars": 0,
-      "openIssues": 0,
+      "openIssues": 1,
       "defaultBranch": "main"
     },
     {
@@ -619,18 +621,6 @@
       "kind": "artifact",
       "repo": "xin7355-collab/StockAI-DB",
       "name": "github-pages",
-      "bytes": 70831591,
-      "createdAt": "2026-08-26T04:57:43Z",
-      "expiresAt": "2026-08-27T04:57:35Z",
-      "expired": true,
-      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/runs/32932107663",
-      "reason": "expired",
-      "severity": "critical"
-    },
-    {
-      "kind": "artifact",
-      "repo": "xin7355-collab/StockAI-DB",
-      "name": "github-pages",
       "bytes": 70831490,
       "createdAt": "2026-08-26T05:01:26Z",
       "expiresAt": "2026-08-27T05:01:16Z",
@@ -780,6 +770,18 @@
       "expiresAt": "2026-08-29T01:04:38Z",
       "expired": false,
       "url": "https://github.com/xin7355-collab/StockAI-DB/actions/runs/33131676475",
+      "reason": "artifact",
+      "severity": "warning"
+    },
+    {
+      "kind": "artifact",
+      "repo": "xin7355-collab/StockAI-DB",
+      "name": "github-pages",
+      "bytes": 70417072,
+      "createdAt": "2026-08-28T02:23:27Z",
+      "expiresAt": "2026-08-29T02:23:17Z",
+      "expired": false,
+      "url": "https://github.com/xin7355-collab/StockAI-DB/actions/runs/33135704912",
       "reason": "artifact",
       "severity": "warning"
     },
@@ -2767,26 +2769,23 @@
   "billing": {
     "source": "enhanced",
     "daysLeftInCycle": null,
-    "sharedStorageGB": 0,
+    "sharedStorageGB": 122.41,
     "paidStorageGB": null,
     "lfsStorageGB": null,
     "actions": {
-      "usedMinutes": 52323.18441369802,
+      "usedMinutes": 48539,
       "paidMinutes": null,
       "includedMinutes": null,
       "breakdown": null
     },
-    "packages": {
-      "bandwidthGB": 0,
-      "paidBandwidthGB": null,
-      "includedGB": null
-    },
+    "packages": null,
     "netAmount": 0,
-    "currency": "USD"
+    "currency": "USD",
+    "itemCount": 230
   },
   "rate": {
     "limit": 5000,
-    "remaining": 4954,
+    "remaining": 4913,
     "reset": 1787885527000
   },
   "requestCount": 54,
@@ -2795,37 +2794,37 @@
       "path": "/user/packages?package_type=container",
       "message": "HTTP 403: Resource not accessible by personal access token",
       "status": 403,
-      "at": "2026-08-28T02:22:47.555Z"
+      "at": "2026-08-28T02:25:46.848Z"
     },
     {
       "path": "/user/packages?package_type=npm",
       "message": "HTTP 403: Resource not accessible by personal access token",
       "status": 403,
-      "at": "2026-08-28T02:22:47.638Z"
+      "at": "2026-08-28T02:25:46.915Z"
     },
     {
       "path": "/user/packages?package_type=maven",
       "message": "HTTP 403: Resource not accessible by personal access token",
       "status": 403,
-      "at": "2026-08-28T02:22:47.714Z"
+      "at": "2026-08-28T02:25:46.986Z"
     },
     {
       "path": "/user/packages?package_type=rubygems",
       "message": "HTTP 403: Resource not accessible by personal access token",
       "status": 403,
-      "at": "2026-08-28T02:22:47.795Z"
+      "at": "2026-08-28T02:25:47.054Z"
     },
     {
       "path": "/user/packages?package_type=nuget",
       "message": "HTTP 403: Resource not accessible by personal access token",
       "status": 403,
-      "at": "2026-08-28T02:22:47.877Z"
+      "at": "2026-08-28T02:25:47.113Z"
     },
     {
       "path": "/user/packages?package_type=docker",
       "message": "HTTP 403: Resource not accessible by personal access token",
       "status": 403,
-      "at": "2026-08-28T02:22:47.952Z"
+      "at": "2026-08-28T02:25:47.176Z"
     }
   ]
 }
