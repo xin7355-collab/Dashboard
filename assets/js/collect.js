@@ -242,23 +242,48 @@ async function fetchBilling(gh, login) {
   };
 }
 
+/**
+ * 新版計費 API 回傳的是逐筆 usageItem，同一個 product（例如 Actions）底下
+ * 同時混著「分鐘」與「GB 儲存」兩種完全不同的計量單位。只用 product 名稱
+ * 過濾會把兩者加在一起，得到一個沒有意義的大數字，所以這裡一律以
+ * unitType 為準來分類，認不出來的就回傳 null 而不是 0 ——
+ * 一個自信的 0 比「無資料」更誤導人。
+ */
 function normaliseEnhanced(payload) {
   const items = payload.usageItems ?? [];
-  const sumBy = (pred, field = 'quantity') =>
-    items.filter(pred).reduce((n, i) => n + (i[field] ?? 0), 0);
-  const isProduct = (name) => (i) => (i.product ?? '').toLowerCase().includes(name);
+  if (!items.length) return null;
+
+  const text = (i) => `${i.product ?? ''} ${i.sku ?? ''}`.toLowerCase();
+  const unit = (i) => (i.unitType ?? '').toLowerCase();
+
+  const sumWhere = (pred) => {
+    const hit = items.filter(pred);
+    return hit.length ? hit.reduce((n, i) => n + (i.quantity ?? 0), 0) : null;
+  };
+
+  const isMinutes = (i) => unit(i).includes('minute');
+  const isStorage = (i) => unit(i).includes('gb') || text(i).includes('storage');
+
+  const days = daysInThisMonth();
+  // 儲存以 GB-day（或 GB-hour）計價，除回天數才是「平均佔用多少 GB」。
+  const perDay = (v) => (v == null ? null : round(v / days, 3));
+
+  const storage = sumWhere((i) => isStorage(i) && !text(i).includes('lfs') && !isMinutes(i));
+  const lfs = sumWhere((i) => isStorage(i) && text(i).includes('lfs'));
+  const minutes = sumWhere((i) => isMinutes(i) && text(i).includes('actions'));
+  const pkgBandwidth = sumWhere((i) => text(i).includes('packages') && isStorage(i));
 
   return {
     source: 'enhanced',
     daysLeftInCycle: null,
-    // enhanced 的儲存量以 GB-day 計價，除以當月天數還原成「平均佔用 GB」。
-    sharedStorageGB: round(sumBy(isProduct('storage')) / daysInThisMonth(), 3),
+    sharedStorageGB: perDay(storage),
     paidStorageGB: null,
-    lfsStorageGB: round(sumBy(isProduct('git lfs')) / daysInThisMonth(), 3) || null,
-    actions: { usedMinutes: sumBy(isProduct('actions')), paidMinutes: null, includedMinutes: null, breakdown: null },
-    packages: { bandwidthGB: sumBy(isProduct('packages')), paidBandwidthGB: null, includedGB: null },
+    lfsStorageGB: perDay(lfs),
+    actions: minutes == null ? null : { usedMinutes: round(minutes, 1), paidMinutes: null, includedMinutes: null, breakdown: null },
+    packages: pkgBandwidth == null ? null : { bandwidthGB: round(pkgBandwidth, 3), paidBandwidthGB: null, includedGB: null },
     netAmount: round(items.reduce((n, i) => n + (i.netAmount ?? 0), 0), 2),
     currency: 'USD',
+    itemCount: items.length,
   };
 }
 
@@ -278,7 +303,8 @@ async function fetchPackages(gh) {
 // ---------------------------------------------------------------- 彙總
 
 function sumTotals(repos, billing, packages) {
-  const sum = (f) => repos.reduce((n, r) => n + (r[f] ?? 0), 0);
+  const sum = (f, rs = repos) => rs.reduce((n, r) => n + (r[f] ?? 0), 0);
+  const priv = repos.filter((r) => r.private);
   const repoBytes = sum('sizeBytes');
   const artifactBytes = sum('artifactBytes');
   const cacheBytes = sum('cacheBytes');
@@ -288,6 +314,10 @@ function sumTotals(repos, billing, packages) {
   return {
     repoBytes, artifactBytes, cacheBytes, releaseBytes, lfsBytes,
     expiredArtifactBytes: sum('expiredArtifactBytes'),
+    // 公開 repository 的 Actions 儲存與分鐘數不計入付費額度，所以額度估算
+    // 只能看私人 repo。混在一起算會對著一堆免費的 artifacts 發出假警報。
+    privateArtifactBytes: sum('artifactBytes', priv),
+    privateCacheBytes: sum('cacheBytes', priv),
     packagesCount: packages?.length ?? null,
     // 「總佔用」刻意排除 cache（可自動重建、不計入共用儲存額度），
     // 但仍在組成圖裡單獨顯示，才不會讓人誤以為那不用管。

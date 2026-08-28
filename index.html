@@ -73,6 +73,7 @@
   <ul>
     <li><strong>Git 內容</strong>來自 GitHub API 的 <code>repository.size</code>。這是 GitHub 定期估算的磁碟用量，不是即時值，剛 push 完可能要一段時間才反映。</li>
     <li><strong>Actions artifacts</strong> 與 <strong>Packages</strong> 共用同一份儲存額度，這通常才是空間爆掉的主因，而不是程式碼本身。</li>
+    <li><strong>公開 repository 的 Actions 儲存與分鐘數是免費的</strong>，不計入上面那份額度。所以「Actions artifacts」磚顯示的是實際佔用的磁碟空間，而「共用儲存」額度只計算私人 repository —— 兩個數字對不起來是正常的。</li>
     <li><strong>Actions cache</strong> 每個 repository 各有獨立額度、滿了會自動淘汰最舊的，因此不計入「總佔用」，但仍單獨列出。</li>
     <li><strong>Release 附件</strong>不計入儲存額度，但會消耗下載頻寬。</li>
     <li><strong>Git LFS</strong> 的 REST API 沒有逐 repository 的用量端點，只能從帳單取得總量；儀表板改以 <code>.gitattributes</code> 標示哪些 repository 有在用。</li>

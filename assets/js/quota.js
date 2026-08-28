@@ -44,18 +44,25 @@ export function deriveQuotas(snap, config) {
   };
 
   // 1) Actions artifacts + Packages 共用的儲存額度 —— 最常爆掉的一項。
+  //
+  // 關鍵：公開 repository 的 Actions 儲存與分鐘數是免費的，不計入這份額度。
+  // 沒有帳單資料時只能用私人 repo 的 artifacts 估算；把公開 repo 也算進來
+  // 會對著一堆免費的東西發出假警報（實測過：14 個公開 repo 有 4.9 GB 的
+  // artifacts，而帳單回報的計費儲存是 0）。
+  const privateArtifacts = snap.totals.privateArtifactBytes;
+  const hasBilling = b?.sharedStorageGB != null;
   push({
     id: 'shared-storage', historyField: 'artifactBytes',
     label: 'Actions 與 Packages 共用儲存',
-    used: b?.sharedStorageGB != null ? b.sharedStorageGB * GB : snap.totals.artifactBytes,
+    used: hasBilling ? b.sharedStorageGB * GB : (privateArtifacts ?? null),
     limit: plan.sharedStorageGB * GB,
     unit: 'bytes',
-    available: true,
-    estimated: b?.sharedStorageGB == null,
-    note: b?.sharedStorageGB == null
-      ? '未取得帳單資料，此處以 Actions artifacts 總量估算，未含 Packages。'
-      : `帳單來源：${b.source === 'enhanced' ? '新版計費 API' : '舊版計費 API'}`,
-    help: 'Artifacts 與 Packages 共用同一份儲存額度。刪掉過期 artifacts 是最快的回收手段。',
+    available: hasBilling || privateArtifacts != null,
+    estimated: !hasBilling,
+    note: hasBilling
+      ? `帳單來源：${b.source === 'enhanced' ? '新版計費 API' : '舊版計費 API'}`
+      : '未取得帳單資料，此處以私人 repository 的 artifacts 估算，未含 Packages。',
+    help: '只有私人 repository 會計入這份額度，公開 repository 的 Actions 儲存與分鐘數免費。刪掉過期 artifacts 是最快的回收手段。',
   });
 
   // 2) Git LFS —— REST API 沒有逐 repo 端點，只有帳單拿得到總量。
@@ -78,7 +85,9 @@ export function deriveQuotas(snap, config) {
     limit: b?.actions?.includedMinutes ?? plan.actionsMinutes,
     unit: 'minutes',
     available: b?.actions?.usedMinutes != null,
-    note: b?.actions?.usedMinutes == null ? '需要具備帳單讀取權限的 PAT 才能取得。' : '公開 repo 的用量不計費。',
+    note: b?.actions?.usedMinutes == null
+      ? '需要具備帳單讀取權限的 PAT 才能取得。'
+      : '公開 repository 的用量免費，不計入這個額度。',
     help: '每個計費週期重置。',
   });
 

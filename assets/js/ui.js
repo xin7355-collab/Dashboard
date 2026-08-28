@@ -190,7 +190,7 @@ function kpiRow(snap, view) {
       note: `${snap.counts.repos} 個 repository` },
     { key: 'artifactBytes', label: 'Actions artifacts', color: 'var(--series-2)',
       note: snap.totals.expiredArtifactBytes > 0
-        ? `其中 ${fmt.bytes(snap.totals.expiredArtifactBytes)} 已過期`
+        ? `${snap.counts.artifacts} 個，其中 ${fmt.bytes(snap.totals.expiredArtifactBytes)} 已過期`
         : `${snap.counts.artifacts} 個` },
     { key: 'cacheBytes', label: 'Actions cache', color: 'var(--series-3)',
       note: '可自動重建' },
