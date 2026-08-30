@@ -114,6 +114,14 @@
 
 * { box-sizing: border-box; }
 
+/*
+ * hidden 屬性必須贏過任何 display 宣告。
+ * 瀏覽器預設樣式表給的是 `[hidden] { display: none }`，優先權只有元素層級，
+ * 任何 class 的 display（例如 .btn 的 inline-flex）都會蓋掉它——
+ * 結果就是用 el.hidden = true 藏不掉東西，而且完全沒有錯誤訊息。
+ */
+[hidden] { display: none !important; }
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {
@@ -250,10 +258,16 @@ main { padding: 20px 24px 56px; max-width: 1480px; margin: 0 auto; }
   .account-chip img { width: 24px; height: 24px; }
 }
 
-/* 再窄一階就只留圖示，文字交給 title/aria-label。 */
+/* 再窄一階，次要按鈕只留圖示，文字交給 title/aria-label。 */
 @media (max-width: 460px) {
   .btn .btn-text { display: none; }
   .btn { padding: 7px 9px; }
+
+  /* 主要動作是例外：一個沒有標籤的圓形箭頭圖示，沒有人看得出那是「即時掃描」。
+     這是整個頁面最重要的按鈕，寧可佔空間也不能讓人找不到。 */
+  .btn.primary .btn-text { display: inline; }
+  .btn.primary { padding: 7px 12px; }
+
   .hero-figure { font-size: 44px; }
 }
 
